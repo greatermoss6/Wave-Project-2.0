@@ -33,28 +33,28 @@
             <VBox spacing="20" alignment="CENTER">
                 <Label text="Welcome Back" styleClass="page-title"/>
                 <Label text="Sign in to continue your learning journey and unlock your potential"
-                       styleClass="subtitle" textAlignment="CENTER" maxWidth="60%"/>
+                       styleClass="subtitle" textAlignment="CENTER" maxWidth="640"/>
             </VBox>
 
             <!-- Login Form Card -->
-            <VBox styleClass="feature-card" spacing="32" alignment="CENTER" maxWidth="50%" minWidth="400">
+            <VBox styleClass="feature-card" spacing="32" alignment="CENTER" maxWidth="600" minWidth="400">
 
                 <!-- Email Field -->
-                <VBox spacing="12" alignment="CENTER_LEFT" prefWidth="100%">
+                <VBox spacing="12" alignment="CENTER_LEFT" prefWidth="600">
                     <Label text="Email Address" styleClass="form-label"/>
                     <TextField fx:id="emailField"
                                promptText="Enter your email address"
                                styleClass="form-field"
-                               prefWidth="100%"/>
+                               prefWidth="600"/>
                 </VBox>
 
                 <!-- Password Field -->
-                <VBox spacing="12" alignment="CENTER_LEFT" prefWidth="100%">
+                <VBox spacing="12" alignment="CENTER_LEFT" prefWidth="600">
                     <Label text="Password" styleClass="form-label"/>
                     <PasswordField fx:id="passwordField"
                                    promptText="Enter your password"
                                    styleClass="form-field"
-                                   prefWidth="100%"/>
+                                   prefWidth="600"/>
                 </VBox>
 
                 <!-- Message Display -->
@@ -62,13 +62,13 @@
                        wrapText="true"
                        textAlignment="CENTER"
                        style="-fx-min-height: 30px;"
-                       prefWidth="90%"/>
+                       prefWidth="540"/>
 
                 <!-- Login Button -->
                 <Button fx:id="loginBtn"
                         text="Sign In to Dashboard"
                         styleClass="btn-primary"
-                        prefWidth="100%"
+                        prefWidth="600"
                         style="-fx-font-size: 18px; -fx-padding: 20 36;"
                         defaultButton="true"/>
 
@@ -76,7 +76,7 @@
 
             <!-- Divider -->
             <VBox spacing="20" alignment="CENTER">
-                <Separator maxWidth="50%" style="-fx-background-color: rgba(0, 0, 0, 0.1);"/>
+                <Separator maxWidth="600" style="-fx-background-color: rgba(0, 0, 0, 0.1);"/>
                 <Label text="Don't have an account yet?" styleClass="body-text" style="-fx-font-size: 18px;"/>
             </VBox>
 
@@ -86,14 +86,14 @@
                         text="Create New Account"
                         styleClass="btn-secondary"
                         style="-fx-font-size: 18px; -fx-padding: 18 36;"
-                        prefWidth="30%"
+                        prefWidth="360"
                         minWidth="300"/>
 
                 <Label text="Join thousands of learners mastering sign language worldwide"
                        style="-fx-font-size: 15px; -fx-text-fill: #64748b; -fx-text-alignment: center; -fx-font-weight: 500;"
                        textAlignment="CENTER"
                        wrapText="true"
-                       maxWidth="50%"/>
+                       maxWidth="600"/>
             </VBox>
 
         </VBox>
