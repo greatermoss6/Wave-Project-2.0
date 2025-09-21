@@ -32,22 +32,22 @@
             <VBox spacing="20" alignment="CENTER">
                 <Label text="Your Learning Dashboard" styleClass="page-title"/>
                 <Label text="Select a module, chapter, and lesson to continue your sign language journey"
-                       styleClass="subtitle" textAlignment="CENTER" maxWidth="80%"/>
+                       styleClass="subtitle" textAlignment="CENTER" maxWidth="960"/>
             </VBox>
 
             <!-- Learning Progress Overview -->
-            <HBox styleClass="stats-section" spacing="10%" alignment="CENTER" prefWidth="80%" maxWidth="800">
-                <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+            <HBox styleClass="stats-section" spacing="64" alignment="CENTER" prefWidth="960" maxWidth="800">
+                <VBox spacing="12" alignment="CENTER" prefWidth="288">
                     <Label text="🎯" style="-fx-font-size: 32px;"/>
                     <Label text="Modules Completed" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
                     <Label text="3 / 12" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
                 </VBox>
-                <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+                <VBox spacing="12" alignment="CENTER" prefWidth="288">
                     <Label text="🏆" style="-fx-font-size: 32px;"/>
                     <Label text="Current Streak" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
                     <Label text="7 days" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
                 </VBox>
-                <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+                <VBox spacing="12" alignment="CENTER" prefWidth="288">
                     <Label text="⭐" style="-fx-font-size: 32px;"/>
                     <Label text="Points Earned" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
                     <Label text="1,250" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
@@ -55,10 +55,10 @@
             </HBox>
 
             <!-- Learning Content Selection -->
-            <GridPane hgap="3%" vgap="20" alignment="CENTER" VBox.vgrow="ALWAYS" prefWidth="90%">
+            <GridPane hgap="20" vgap="20" alignment="CENTER" VBox.vgrow="ALWAYS" prefWidth="1080">
 
                 <!-- Modules Column -->
-                <VBox styleClass="dashboard-column" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="31%">
+                <VBox styleClass="dashboard-column" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="336">
                     <Label text="📚 Learning Modules" styleClass="column-header"/>
                     <ListView fx:id="moduleList"
                               styleClass="content-list"
@@ -70,7 +70,7 @@
                 </VBox>
 
                 <!-- Chapters Column -->
-                <VBox styleClass="dashboard-column" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="31%">
+                <VBox styleClass="dashboard-column" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="360">
                     <Label text="📖 Chapters" styleClass="column-header"/>
                     <ListView fx:id="chapterList"
                               styleClass="content-list"
@@ -82,7 +82,7 @@
                 </VBox>
 
                 <!-- Lessons Column -->
-                <VBox styleClass="dashboard-column" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="31%">
+                <VBox styleClass="dashboard-column" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="840">
                     <Label text="🎥 Lessons" styleClass="column-header"/>
                     <ListView fx:id="lessonList"
                               styleClass="content-list"
@@ -101,10 +101,10 @@
                         text="🎬 Start Selected Lesson"
                         styleClass="btn-primary"
                         style="-fx-font-size: 20px; -fx-padding: 20 40;"
-                        prefWidth="30%"
+                        prefWidth="360"
                         minWidth="300"/>
 
-                <VBox styleClass="info-section" spacing="12" alignment="CENTER" maxWidth="70%">
+                <VBox styleClass="info-section" spacing="12" alignment="CENTER" maxWidth="840">
                     <Label text="💡 Learning Tip"
                            style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #2563eb;"/>
                     <Label text="Complete lessons in order to unlock new content and maximize your learning progress. Each lesson builds upon the previous one for optimal comprehension."
