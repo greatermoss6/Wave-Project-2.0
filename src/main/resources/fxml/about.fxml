@@ -34,22 +34,22 @@
                 <VBox spacing="20" alignment="CENTER">
                     <Label text="About SignLearn" styleClass="page-title"/>
                     <Label text="Bridging communication barriers through innovative sign language education and empowering meaningful connections"
-                           styleClass="subtitle" textAlignment="CENTER" maxWidth="80%"/>
+                           styleClass="subtitle" textAlignment="CENTER" wrapText="true" maxWidth="600"/>
                 </VBox>
 
                 <!-- Mission Section -->
-                <VBox styleClass="feature-card" spacing="24" alignment="CENTER" maxWidth="90%">
+                <VBox styleClass="feature-card" spacing="24" alignment="CENTER" maxWidth="900">
                     <Label text="Our Mission" styleClass="section-title"/>
                     <Label text="SignLearn is dedicated to making sign language education accessible, engaging, and effective for learners of all levels. We believe that communication should have no barriers, and everyone deserves the opportunity to connect with the deaf and hard-of-hearing community through meaningful, respectful interaction."
                            styleClass="body-text" wrapText="true" textAlignment="CENTER"/>
                 </VBox>
 
                 <!-- Features Grid -->
-                <VBox spacing="32" alignment="CENTER" maxWidth="95%">
+                <VBox spacing="32" alignment="CENTER" maxWidth="950">
                     <Label text="What Makes Us Different" styleClass="section-title"/>
 
-                    <GridPane hgap="5%" vgap="32" alignment="CENTER" prefWidth="100%">
-                        <VBox styleClass="feature-card" spacing="16" prefWidth="47%" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <GridPane hgap="24" vgap="32" alignment="CENTER" prefWidth="Infinity">
+                        <VBox styleClass="feature-card" spacing="16" prefWidth="420" GridPane.columnIndex="0" GridPane.rowIndex="0">
                             <HBox spacing="16" alignment="CENTER_LEFT">
                                 <Label text="🎯" style="-fx-font-size: 32px;"/>
                                 <Label text="Structured Learning Methodology" style="-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #1e293b;"/>
@@ -58,7 +58,7 @@
                                    styleClass="body-text" wrapText="true"/>
                         </VBox>
 
-                        <VBox styleClass="feature-card" spacing="16" prefWidth="47%" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <VBox styleClass="feature-card" spacing="16" prefWidth="420" GridPane.columnIndex="1" GridPane.rowIndex="0">
                             <HBox spacing="16" alignment="CENTER_LEFT">
                                 <Label text="👩‍🏫" style="-fx-font-size: 32px;"/>
                                 <Label text="Certified Expert Instructors" style="-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #1e293b;"/>
@@ -67,7 +67,7 @@
                                    styleClass="body-text" wrapText="true"/>
                         </VBox>
 
-                        <VBox styleClass="feature-card" spacing="16" prefWidth="47%" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <VBox styleClass="feature-card" spacing="16" prefWidth="420" GridPane.columnIndex="0" GridPane.rowIndex="1">
                             <HBox spacing="16" alignment="CENTER_LEFT">
                                 <Label text="📱" style="-fx-font-size: 32px;"/>
                                 <Label text="Interactive Learning Experience" style="-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #1e293b;"/>
@@ -76,7 +76,7 @@
                                    styleClass="body-text" wrapText="true"/>
                         </VBox>
 
-                        <VBox styleClass="feature-card" spacing="16" prefWidth="47%" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <VBox styleClass="feature-card" spacing="16" prefWidth="420" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <HBox spacing="16" alignment="CENTER_LEFT">
                                 <Label text="🌟" style="-fx-font-size: 32px;"/>
                                 <Label text="Advanced Progress Tracking" style="-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #1e293b;"/>
@@ -88,18 +88,18 @@
                 </VBox>
 
                 <!-- Stats Section -->
-                <VBox styleClass="stats-section" spacing="32" alignment="CENTER" maxWidth="70%">
+                <VBox styleClass="stats-section" spacing="32" alignment="CENTER" maxWidth="700">
                     <Label text="Join Our Growing Learning Community" styleClass="section-title"/>
-                    <HBox spacing="10%" alignment="CENTER" prefWidth="100%">
-                        <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+                    <HBox spacing="24" alignment="CENTER" prefWidth="Infinity">
+                        <VBox spacing="12" alignment="CENTER" prefWidth="210">
                             <Label text="15,000+" style="-fx-font-size: 36px; -fx-font-weight: 800; -fx-text-fill: #667eea;"/>
                             <Label text="Active Learners" styleClass="body-text" style="-fx-font-weight: 600;"/>
                         </VBox>
-                        <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+                        <VBox spacing="12" alignment="CENTER" prefWidth="210">
                             <Label text="750+" style="-fx-font-size: 36px; -fx-font-weight: 800; -fx-text-fill: #667eea;"/>
                             <Label text="Video Lessons" styleClass="body-text" style="-fx-font-weight: 600;"/>
                         </VBox>
-                        <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+                        <VBox spacing="12" alignment="CENTER" prefWidth="210">
                             <Label text="97%" style="-fx-font-size: 36px; -fx-font-weight: 800; -fx-text-fill: #667eea;"/>
                             <Label text="Success Rate" styleClass="body-text" style="-fx-font-weight: 600;"/>
                         </VBox>

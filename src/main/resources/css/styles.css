@@ -16,7 +16,6 @@
     -fx-border-color: rgba(0, 0, 0, 0.08);
     -fx-border-width: 0 0 1 0;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 12, 0, 0, 2);
-    -fx-backdrop-filter: blur(20px);
 }
 
 .nav-title {
@@ -187,7 +186,6 @@
     -fx-border-color: rgba(255, 255, 255, 0.4);
     -fx-border-width: 1;
     -fx-border-radius: 24;
-    -fx-backdrop-filter: blur(20px);
 }
 
 .feature-card:hover {
@@ -231,7 +229,6 @@
     -fx-border-width: 1;
     -fx-border-radius: 16;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 12, 0, 0, 3);
-    -fx-backdrop-filter: blur(20px);
 }
 
 .list-cell {
@@ -366,7 +363,6 @@
     -fx-padding: 24;
     -fx-border-color: rgba(0, 0, 0, 0.06);
     -fx-border-width: 1 0 0 0;
-    -fx-backdrop-filter: blur(20px);
 }
 
 .footer-text {
@@ -422,7 +418,6 @@
 /* ===== LUXURY ANIMATIONS & EFFECTS ===== */
 .glass-effect {
     -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-backdrop-filter: blur(20px);
     -fx-border-color: rgba(255, 255, 255, 0.2);
     -fx-border-width: 1;
 }

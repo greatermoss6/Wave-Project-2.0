@@ -43,5 +43,9 @@ public class SceneRouter {
         } else {
             current.setRoot(loaded.root);
         }
+
+        // TEST: super-visible breadcrumb for manual verification
+        stage.setTitle("Wave • " + view.name());            // TEST: window title shows current view
+        System.out.println("[NAV] -> " + view.name());      // TEST: console breadcrumb
     }
 }
