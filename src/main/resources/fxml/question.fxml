@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.signlearn.presentation.controller.QuestionController"
+            stylesheets="@../css/styles.css"
+            styleClass="main-container">
+
+    <!-- Navigation Bar -->
+    <top>
+        <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30">
+            <Label text="🤟 SignLearn" styleClass="nav-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="20" alignment="CENTER_RIGHT">
+                <Label text="Knowledge Assessment" style="-fx-text-fill: #64748b; -fx-font-size: 16px; -fx-font-weight: 600;"/>
+                <Button text="Dashboard" fx:id="questionDashboardBtn" styleClass="nav-button"/>
+                <Button text="Progress" fx:id="questionProgressBtn" styleClass="nav-button"/>
+                <Button text="Logout" fx:id="questionLogoutBtn" styleClass="nav-button"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <VBox styleClass="content-area,spacing-large" VBox.vgrow="ALWAYS">
+
+            <!-- Header -->
+            <VBox spacing="20" alignment="CENTER">
+                <Label text="Knowledge Assessment" styleClass="page-title"/>
+                <Label text="Test your understanding of the lesson material and reinforce your learning"
+                       styleClass="subtitle" textAlignment="CENTER" maxWidth="70%"/>
+            </VBox>
+
+            <!-- Quiz Progress -->
+            <VBox styleClass="stats-section" spacing="16" alignment="CENTER" maxWidth="50%">
+                <Label text="Question 1 of 5"
+                       style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                <HBox spacing="3%" alignment="CENTER" prefWidth="100%">
+                    <Region styleClass="progress-indicator" prefWidth="18%" prefHeight="8"/>
+                    <Region styleClass="progress-inactive" prefWidth="18%" prefHeight="8"/>
+                    <Region styleClass="progress-inactive" prefWidth="18%" prefHeight="8"/>
+                    <Region styleClass="progress-inactive" prefWidth="18%" prefHeight="8"/>
+                    <Region styleClass="progress-inactive" prefWidth="18%" prefHeight="8"/>
+                </HBox>
+            </VBox>
+
+            <!-- Question Section -->
+            <VBox spacing="32" alignment="CENTER" VBox.vgrow="ALWAYS">
+
+                <!-- Question Container -->
+                <VBox styleClass="question-container" spacing="24" alignment="CENTER" maxWidth="90%" prefWidth="80%">
+                    <Label fx:id="promptLabel"
+                           wrapText="true"
+                           textAlignment="CENTER"
+                           style="-fx-font-size: 24px; -fx-font-weight: 600; -fx-text-fill: #1e293b; -fx-line-spacing: 1.5;"/>
+
+                    <!-- Question Image Placeholder -->
+                    <VBox spacing="16" alignment="CENTER"
+                          styleClass="feature-card"
+                          style="-fx-padding: 32; -fx-min-height: 200; -fx-pref-width: 80%;">
+                        <Label text="🤲" style="-fx-font-size: 64px;"/>
+                        <Label text="Sign demonstration would appear here"
+                               style="-fx-font-size: 16px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
+                        <Label text="Watch carefully and select the correct answer below"
+                               style="-fx-font-size: 14px; -fx-text-fill: #94a3b8; -fx-font-style: italic;"/>
+                    </VBox>
+                </VBox>
+
+                <!-- Answer Options -->
+                <VBox fx:id="optionsBox"
+                      spacing="20"
+                      alignment="CENTER"
+                      maxWidth="80%"
+                      VBox.vgrow="ALWAYS"/>
+
+            </VBox>
+
+            <!-- Feedback Section -->
+            <VBox spacing="20" alignment="CENTER">
+                <Label fx:id="feedbackLabel"
+                       wrapText="true"
+                       textAlignment="CENTER"
+                       style="-fx-min-height: 50px; -fx-font-size: 16px; -fx-font-weight: 500;"
+                       maxWidth="80%"/>
+            </VBox>
+
+            <!-- Action Buttons -->
+            <HBox spacing="5%" alignment="CENTER" prefWidth="60%">
+                <Button fx:id="backBtn"
+                        text="← Back to Video Lesson"
+                        styleClass="btn-secondary"
+                        style="-fx-font-size: 16px;"
+                        prefWidth="47%"/>
+
+                <Button fx:id="submitBtn"
+                        text="Submit Answer"
+                        styleClass="btn-primary"
+                        style="-fx-font-weight: 600; -fx-font-size: 16px; -fx-padding: 20 40;"
+                        prefWidth="47%"/>
+            </HBox>
+
+            <!-- Quiz Help -->
+            <VBox styleClass="tip-section" spacing="16" alignment="CENTER" maxWidth="70%">
+                <Label text="💡 Assessment Tip"
+                       style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #92400e;"/>
+                <Label text="Take your time to think about the lesson content. You can review the video if needed! Each question is designed to reinforce what you've learned."
+                       style="-fx-font-size: 15px; -fx-text-fill: #92400e; -fx-text-alignment: center; -fx-font-weight: 500;"
+                       textAlignment="CENTER"
+                       wrapText="true"/>
+            </VBox>
+
+        </VBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER">
+            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.signlearn.presentation.controller.LandingController"
+            stylesheets="@../css/styles.css"
+            styleClass="main-container">
+
+    <!-- Navigation Bar -->
+    <top>
+        <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30" fillHeight="false">
+            <Label text="🤟 SignLearn" styleClass="nav-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="20" alignment="CENTER_RIGHT">
+                <Button text="About" fx:id="aboutBtn" styleClass="nav-button"/>
+                <Button text="Contact" fx:id="contactBtn" styleClass="nav-button"/>
+                <Button text="Login" fx:id="loginBtn" styleClass="nav-button"/>
+                <Button text="Sign Up" fx:id="signupBtn" styleClass="nav-button,active"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Main Content - Full Screen -->
+    <center>
+        <VBox styleClass="content-area,spacing-large" alignment="CENTER" VBox.vgrow="ALWAYS">
+
+            <!-- Hero Section -->
+            <VBox spacing="32" alignment="CENTER" VBox.vgrow="ALWAYS">
+                <VBox spacing="24" alignment="CENTER">
+                    <Label text="Master Sign Language" styleClass="page-title"/>
+                    <Label text="Learn through engaging video lessons and interactive quizzes designed by certified instructors. Join thousands of learners worldwide and start your journey to meaningful communication."
+                           styleClass="subtitle" wrapText="true" textAlignment="CENTER"/>
+                </VBox>
+
+                <!-- Primary CTA -->
+                <VBox spacing="20" alignment="CENTER">
+                    <Button text="Start Learning Today" fx:id="landingHeroSignupBtn" styleClass="btn-primary"/>
+                    <Button text="Learn More About Us" fx:id="landingHeroAboutBtn" styleClass="btn-secondary"/>
+                </VBox>
+            </VBox>
+
+            <!-- Feature Grid -->
+            <GridPane vgap="40" alignment="CENTER" VBox.vgrow="ALWAYS" >
+                <VBox styleClass="feature-card" spacing="20" alignment="CENTER"  GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="🎥" style="-fx-font-size: 56px;"/>
+                    <Label text="Video Lessons" styleClass="section-title" style="-fx-font-size: 24px;"/>
+                    <Label text="High-quality lessons from certified sign language instructors with crystal-clear demonstrations and professional production values"
+                           styleClass="body-text" wrapText="true" textAlignment="CENTER"/>
+                </VBox>
+
+                <VBox styleClass="feature-card" spacing="20" alignment="CENTER"  GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="🧠" style="-fx-font-size: 56px;"/>
+                    <Label text="Interactive Quizzes" styleClass="section-title" style="-fx-font-size: 24px;"/>
+                    <Label text="Test your knowledge with engaging multiple-choice questions and immediate feedback to reinforce learning"
+                           styleClass="body-text" wrapText="true" textAlignment="CENTER"/>
+                </VBox>
+
+                <VBox styleClass="feature-card" spacing="20" alignment="CENTER"  GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Label text="📊" style="-fx-font-size: 56px;"/>
+                    <Label text="Track Progress" styleClass="section-title" style="-fx-font-size: 24px;"/>
+                    <Label text="Monitor your learning journey with detailed analytics, achievements, and personalized recommendations"
+                           styleClass="body-text" wrapText="true" textAlignment="CENTER"/>
+                </VBox>
+            </GridPane>
+
+            <!-- Bottom CTA -->
+            <VBox spacing="16" alignment="CENTER">
+                <Label text="Already have an account?" styleClass="body-text" style="-fx-font-size: 18px;"/>
+                <Button text="Sign In Here" fx:id="landingFooterLoginBtn" styleClass="btn-secondary"/>
+            </VBox>
+
+        </VBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER">
+            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

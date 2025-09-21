@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.signlearn.presentation.controller.LearningController"
+            stylesheets="@../css/styles.css"
+            styleClass="main-container">
+
+    <!-- Navigation Bar -->
+    <top>
+        <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30">
+            <Label text="🤟 SignLearn" styleClass="nav-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="20" alignment="CENTER_RIGHT">
+                <Label text="Welcome back, Learner!" style="-fx-text-fill: #64748b; -fx-font-size: 16px; -fx-font-weight: 500;"/>
+                <Button text="Profile" fx:id="learningProfileBtn" styleClass="nav-button"/>
+                <Button text="Progress" fx:id="learningProgressBtn" styleClass="nav-button"/>
+                <Button text="Logout" fx:id="logoutBtn" styleClass="nav-button"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <VBox styleClass="content-area,spacing-large" VBox.vgrow="ALWAYS">
+
+            <!-- Header -->
+            <VBox spacing="20" alignment="CENTER">
+                <Label text="Your Learning Dashboard" styleClass="page-title"/>
+                <Label text="Select a module, chapter, and lesson to continue your sign language journey"
+                       styleClass="subtitle" textAlignment="CENTER" maxWidth="80%"/>
+            </VBox>
+
+            <!-- Learning Progress Overview -->
+            <HBox styleClass="stats-section" spacing="10%" alignment="CENTER" prefWidth="80%" maxWidth="800">
+                <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+                    <Label text="🎯" style="-fx-font-size: 32px;"/>
+                    <Label text="Modules Completed" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
+                    <Label text="3 / 12" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
+                </VBox>
+                <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+                    <Label text="🏆" style="-fx-font-size: 32px;"/>
+                    <Label text="Current Streak" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
+                    <Label text="7 days" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
+                </VBox>
+                <VBox spacing="12" alignment="CENTER" prefWidth="30%">
+                    <Label text="⭐" style="-fx-font-size: 32px;"/>
+                    <Label text="Points Earned" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
+                    <Label text="1,250" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
+                </VBox>
+            </HBox>
+
+            <!-- Learning Content Selection -->
+            <GridPane hgap="3%" vgap="20" alignment="CENTER" VBox.vgrow="ALWAYS" prefWidth="90%">
+
+                <!-- Modules Column -->
+                <VBox styleClass="dashboard-column" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="31%">
+                    <Label text="📚 Learning Modules" styleClass="column-header"/>
+                    <ListView fx:id="moduleList"
+                              styleClass="content-list"
+                              prefHeight="320"
+                              VBox.vgrow="ALWAYS"/>
+                    <Label text="Choose your learning module to begin"
+                           style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: 500;"
+                           wrapText="true"/>
+                </VBox>
+
+                <!-- Chapters Column -->
+                <VBox styleClass="dashboard-column" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="31%">
+                    <Label text="📖 Chapters" styleClass="column-header"/>
+                    <ListView fx:id="chapterList"
+                              styleClass="content-list"
+                              prefHeight="320"
+                              VBox.vgrow="ALWAYS"/>
+                    <Label text="Select a chapter to explore its lessons"
+                           style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: 500;"
+                           wrapText="true"/>
+                </VBox>
+
+                <!-- Lessons Column -->
+                <VBox styleClass="dashboard-column" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="31%">
+                    <Label text="🎥 Lessons" styleClass="column-header"/>
+                    <ListView fx:id="lessonList"
+                              styleClass="content-list"
+                              prefHeight="320"
+                              VBox.vgrow="ALWAYS"/>
+                    <Label text="Pick a lesson to start your learning session"
+                           style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: 500;"
+                           wrapText="true"/>
+                </VBox>
+
+            </GridPane>
+
+            <!-- Action Section -->
+            <VBox spacing="24" alignment="CENTER">
+                <Button fx:id="openLessonBtn"
+                        text="🎬 Start Selected Lesson"
+                        styleClass="btn-primary"
+                        style="-fx-font-size: 20px; -fx-padding: 20 40;"
+                        prefWidth="30%"
+                        minWidth="300"/>
+
+                <VBox styleClass="info-section" spacing="12" alignment="CENTER" maxWidth="70%">
+                    <Label text="💡 Learning Tip"
+                           style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #2563eb;"/>
+                    <Label text="Complete lessons in order to unlock new content and maximize your learning progress. Each lesson builds upon the previous one for optimal comprehension."
+                           style="-fx-font-size: 15px; -fx-text-fill: #2563eb; -fx-text-alignment: center; -fx-font-weight: 500;"
+                           textAlignment="CENTER"
+                           wrapText="true"/>
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER">
+            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

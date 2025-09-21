@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.signlearn.presentation.controller.SignUpDeepController"
+            stylesheets="@../css/styles.css"
+            styleClass="main-container">
+
+    <!-- Navigation Bar -->
+    <top>
+        <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30">
+            <Label text="🤟 SignLearn" styleClass="nav-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <HBox spacing="20" alignment="CENTER_RIGHT">
+                <Button text="Home" fx:id="deepHomeBtn" styleClass="nav-button"/>
+                <Button text="About" fx:id="deepAboutBtn" styleClass="nav-button"/>
+                <Button text="Contact" fx:id="deepContactBtn" styleClass="nav-button"/>
+                <Button text="Login" fx:id="deepLoginBtn" styleClass="nav-button"/>
+                <Button text="Sign Up" styleClass="nav-button,active"/>
+            </HBox>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+            <VBox styleClass="content-area,spacing-large" alignment="TOP_CENTER">
+
+                <!-- Header -->
+                <VBox spacing="20" alignment="CENTER">
+                    <Label text="Complete Your Profile" styleClass="page-title"/>
+                    <Label text="Step 2 of 2 - Tell us about yourself to personalize your learning experience"
+                           styleClass="subtitle" textAlignment="CENTER" maxWidth="80%"/>
+                </VBox>
+
+                <!-- Progress Indicator -->
+                <VBox styleClass="stats-section" spacing="16" alignment="CENTER" maxWidth="30%">
+                    <HBox spacing="5%" alignment="CENTER" prefWidth="100%">
+                        <VBox spacing="8" alignment="CENTER" prefWidth="45%">
+                            <Region styleClass="progress-indicator" prefWidth="100%" prefHeight="8"/>
+                            <Label text="Email Setup" style="-fx-font-size: 14px; -fx-text-fill: #059669; -fx-font-weight: 600;"/>
+                        </VBox>
+                        <Region styleClass="progress-indicator" prefWidth="10%" prefHeight="2"/>
+                        <VBox spacing="8" alignment="CENTER" prefWidth="45%">
+                            <Region styleClass="progress-indicator" prefWidth="100%" prefHeight="8"/>
+                            <Label text="Profile Details" style="-fx-font-size: 14px; -fx-text-fill: #667eea; -fx-font-weight: 600;"/>
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Form Fields -->
+                <VBox styleClass="feature-card" spacing="40" alignment="CENTER" maxWidth="80%" minWidth="700">
+                    <GridPane hgap="5%" vgap="32" alignment="CENTER" prefWidth="100%">
+
+                        <!-- Left Column -->
+                        <VBox spacing="12" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="47%">
+                            <Label text="Full Name" styleClass="form-label"/>
+                            <TextField fx:id="nameField"
+                                       promptText="Enter your full name"
+                                       styleClass="form-field"
+                                       prefWidth="100%"/>
+                        </VBox>
+
+                        <!-- Right Column -->
+                        <VBox spacing="12" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="47%">
+                            <Label text="Username" styleClass="form-label"/>
+                            <TextField fx:id="usernameField"
+                                       promptText="Choose a display name"
+                                       styleClass="form-field"
+                                       prefWidth="100%"/>
+                        </VBox>
+
+                        <!-- Date of Birth - Full Width -->
+                        <VBox spacing="12" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                            <Label text="Date of Birth" styleClass="form-label"/>
+                            <DatePicker fx:id="dobPicker"
+                                        promptText="Select your date of birth"
+                                        styleClass="form-field"
+                                        prefWidth="100%"/>
+                        </VBox>
+
+                        <!-- Password Fields -->
+                        <VBox spacing="12" GridPane.columnIndex="0" GridPane.rowIndex="2" prefWidth="47%">
+                            <Label text="Password" styleClass="form-label"/>
+                            <PasswordField fx:id="passwordField"
+                                           promptText="Create a secure password"
+                                           styleClass="form-field"
+                                           prefWidth="100%"/>
+                        </VBox>
+
+                        <VBox spacing="12" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="47%">
+                            <Label text="Confirm Password" styleClass="form-label"/>
+                            <PasswordField fx:id="confirmPasswordField"
+                                           promptText="Confirm your password"
+                                           styleClass="form-field"
+                                           prefWidth="100%"/>
+                        </VBox>
+
+                    </GridPane>
+
+                    <!-- Message Display -->
+                    <Label fx:id="messageLabel"
+                           wrapText="true"
+                           textAlignment="CENTER"
+                           style="-fx-min-height: 40px;"
+                           maxWidth="90%"/>
+
+                    <!-- Action Buttons -->
+                    <HBox spacing="5%" alignment="CENTER" prefWidth="60%">
+                        <Button fx:id="backBtn"
+                                text="← Previous Step"
+                                styleClass="btn-secondary"
+                                style="-fx-font-size: 16px;"
+                                prefWidth="47%"/>
+                        <Button fx:id="finishBtn"
+                                text="Create My Account"
+                                styleClass="btn-primary"
+                                style="-fx-font-weight: 600; -fx-font-size: 16px;"
+                                prefWidth="47%"
+                                defaultButton="true"/>
+                    </HBox>
+
+                    <!-- Terms Notice -->
+                    <VBox styleClass="info-section" spacing="12" alignment="CENTER" maxWidth="80%">
+                        <Label text="Privacy & Terms"
+                               style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #2563eb;"/>
+                        <Label text="By creating an account, you agree to our Terms of Service and Privacy Policy. We're committed to protecting your personal information and providing you with the best learning experience."
+                               style="-fx-font-size: 14px; -fx-text-fill: #2563eb; -fx-text-alignment: center; -fx-font-weight: 500;"
+                               textAlignment="CENTER"
+                               wrapText="true"/>
+                    </VBox>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- Footer -->
+    <bottom>
+        <HBox styleClass="footer" alignment="CENTER">
+            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
