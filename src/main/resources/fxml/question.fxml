@@ -32,19 +32,19 @@
             <VBox spacing="20" alignment="CENTER">
                 <Label text="Knowledge Assessment" styleClass="page-title"/>
                 <Label text="Test your understanding of the lesson material and reinforce your learning"
-                       styleClass="subtitle" textAlignment="CENTER" maxWidth="70%"/>
+                       styleClass="subtitle" textAlignment="CENTER" maxWidth="640"/>
             </VBox>
 
             <!-- Quiz Progress -->
-            <VBox styleClass="stats-section" spacing="16" alignment="CENTER" maxWidth="50%">
+            <VBox styleClass="stats-section" spacing="16" alignment="CENTER" maxWidth="600">
                 <Label text="Question 1 of 5"
                        style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
-                <HBox spacing="3%" alignment="CENTER" prefWidth="100%">
-                    <Region styleClass="progress-indicator" prefWidth="18%" prefHeight="8"/>
-                    <Region styleClass="progress-inactive" prefWidth="18%" prefHeight="8"/>
-                    <Region styleClass="progress-inactive" prefWidth="18%" prefHeight="8"/>
-                    <Region styleClass="progress-inactive" prefWidth="18%" prefHeight="8"/>
-                    <Region styleClass="progress-inactive" prefWidth="18%" prefHeight="8"/>
+                <HBox spacing="24" alignment="CENTER" prefWidth="600">
+                    <Region styleClass="progress-indicator" prefWidth="108" prefHeight="8"/>
+                    <Region styleClass="progress-inactive" prefWidth="108" prefHeight="8"/>
+                    <Region styleClass="progress-inactive" prefWidth="108" prefHeight="8"/>
+                    <Region styleClass="progress-inactive" prefWidth="108" prefHeight="8"/>
+                    <Region styleClass="progress-inactive" prefWidth="108" prefHeight="8"/>
                 </HBox>
             </VBox>
 
@@ -52,7 +52,7 @@
             <VBox spacing="32" alignment="CENTER" VBox.vgrow="ALWAYS">
 
                 <!-- Question Container -->
-                <VBox styleClass="question-container" spacing="24" alignment="CENTER" maxWidth="90%" prefWidth="80%">
+                <VBox styleClass="question-container" spacing="24" alignment="CENTER" maxWidth="1080" prefWidth="960">
                     <Label fx:id="promptLabel"
                            wrapText="true"
                            textAlignment="CENTER"
@@ -74,7 +74,7 @@
                 <VBox fx:id="optionsBox"
                       spacing="20"
                       alignment="CENTER"
-                      maxWidth="80%"
+                      maxWidth="960"
                       VBox.vgrow="ALWAYS"/>
 
             </VBox>
@@ -85,26 +85,26 @@
                        wrapText="true"
                        textAlignment="CENTER"
                        style="-fx-min-height: 50px; -fx-font-size: 16px; -fx-font-weight: 500;"
-                       maxWidth="80%"/>
+                       maxWidth="960"/>
             </VBox>
 
             <!-- Action Buttons -->
-            <HBox spacing="5%" alignment="CENTER" prefWidth="60%">
+            <HBox spacing="32" alignment="CENTER" prefWidth="720">
                 <Button fx:id="backBtn"
                         text="← Back to Video Lesson"
                         styleClass="btn-secondary"
                         style="-fx-font-size: 16px;"
-                        prefWidth="47%"/>
+                        prefWidth="336"/>
 
                 <Button fx:id="submitBtn"
                         text="Submit Answer"
                         styleClass="btn-primary"
                         style="-fx-font-weight: 600; -fx-font-size: 16px; -fx-padding: 20 40;"
-                        prefWidth="47%"/>
+                        prefWidth="336"/>
             </HBox>
 
             <!-- Quiz Help -->
-            <VBox styleClass="tip-section" spacing="16" alignment="CENTER" maxWidth="70%">
+            <VBox styleClass="tip-section" spacing="16" alignment="CENTER" maxWidth="840">
                 <Label text="💡 Assessment Tip"
                        style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #92400e;"/>
                 <Label text="Take your time to think about the lesson content. You can review the video if needed! Each question is designed to reinforce what you've learned."
