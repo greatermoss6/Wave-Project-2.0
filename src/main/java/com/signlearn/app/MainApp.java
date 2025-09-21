@@ -15,7 +15,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) {
         // --- Repositories (concrete SQLite implementations) ---
-        SqliteUserRepository userRepo = new SqliteUserRepository();
+        SqliteUserRepository userRepo = new SqliteUserRepository(); //yes sir
         SqliteModuleRepository moduleRepo = new SqliteModuleRepository();
         SqliteChapterRepository chapterRepo = new SqliteChapterRepository();
         SqliteLessonRepository lessonRepo = new SqliteLessonRepository();
