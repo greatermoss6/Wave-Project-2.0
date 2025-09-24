@@ -1,6 +1,10 @@
 name: Automatic Unit Testing 
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ Testing_Branch ]
+  pull_request:
+    branches: [ Testing_Branch ]
 
 jobs: 
   test: 
