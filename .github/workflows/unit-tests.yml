@@ -2,9 +2,9 @@ name: Automatic Unit Testing
 
 on:
   push:
-    branches: [ Testing_Branch ]
+    branches: [ Testing_branch ]
   pull_request:
-    branches: [ Testing_Branch ]
+    branches: [ Testing_branch ]
 
 jobs: 
   test: 
@@ -25,6 +25,7 @@ jobs:
         run: Get-ChildItem -Recurse src/test/java | Select-Object FullName
 
       - name: Run unit test suite with Maven
+        shell: cmd
         run: mvn -B -ntp "-Ddb.url=jdbc:sqlite:target/testdb.db" test
 
       - name: Upload test results
