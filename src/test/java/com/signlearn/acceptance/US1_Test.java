@@ -16,4 +16,5 @@ public class US1_Test
             boolean exists = resourceExistsCheck("/images/logo.png");
             assertTrue(exists, "Logo image exists in project path /images/logo.png");
         }
+        // Testing if unit test suite works
     }
