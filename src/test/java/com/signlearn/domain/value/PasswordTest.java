@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordTest {
 
-    /** Simple deterministic hasher stub for testing (no real hashing). */
     private static class StubHasher implements PasswordHasher {
         @Override public String hash(String raw) {
             return "HASH(" + raw + ")";
