@@ -17,7 +17,7 @@ jobs:
           cache: maven
 
       - name: Run unit test suite with Maven
-        run: mvn -B -ntp -Ddb.url=jdbc:sqlite:target/testdb.db test
+        run: mvn -B -ntp -Ddb.url="jdbc:sqlite:target/testdb.db" test
 
       - name: Upload test results
         if: always()
