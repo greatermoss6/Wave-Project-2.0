@@ -15,6 +15,10 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
+          
+      - name: List test sources
+        shell: pwsh
+        run: Get-ChildItem -Recurse src/test/java | Select-Object FullName
 
       - name: Run unit test suite with Maven
         run: mvn -B -ntp "-Ddb.url=jdbc:sqlite:target/testdb.db" test
