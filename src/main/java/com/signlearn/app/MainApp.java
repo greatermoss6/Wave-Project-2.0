@@ -4,18 +4,42 @@ import com.signlearn.app.context.SessionManager;
 import com.signlearn.app.dependency_injection.ServiceRegistry;
 import com.signlearn.app.router.SceneRouter;
 import com.signlearn.app.router.View;
+import com.signlearn.presentation.ui.WindowManager;
 import com.signlearn.domain.service.*;
 import com.signlearn.domain.service.impl.*;
 import com.signlearn.persistence.sqlite.*;
 import com.signlearn.security.*;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
+import javafx.stage.Screen;
+import javafx.geometry.Rectangle2D;
 
 public class MainApp extends Application {
+
     @Override
     public void start(Stage stage) {
-        // --- Repositories (concrete SQLite implementations) ---
-        SqliteUserRepository userRepo = new SqliteUserRepository(); //yes sir
+        // 1. Build services and router
+        ServiceRegistry registry = buildServiceRegistry();
+        new SceneRouter(stage, registry, View.LANDING);
+        stage.setTitle("Wave");
+
+        // 2. Hand off window behavior
+        new SceneRouter(stage, registry, View.LANDING);
+        stage.setTitle("Wave");
+        stage.setResizable(true);
+        stage.centerOnScreen();
+        stage.show();
+
+        // Initialize window manager
+        WindowManager windowManager = new WindowManager(stage);
+
+        // Maximize after first show
+        Platform.runLater(windowManager::maximize);
+    }
+
+    private ServiceRegistry buildServiceRegistry() {
+        SqliteUserRepository userRepo = new SqliteUserRepository();
         SqliteModuleRepository moduleRepo = new SqliteModuleRepository();
         SqliteChapterRepository chapterRepo = new SqliteChapterRepository();
         SqliteLessonRepository lessonRepo = new SqliteLessonRepository();
@@ -23,37 +47,19 @@ public class MainApp extends Application {
         SqliteProgressRepository progressRepo = new SqliteProgressRepository();
         SqliteVideoRepository videoRepo = new SqliteVideoRepository();
 
-        // --- Utilities ---
         SessionManager sessionManager = new SessionManager();
         PasswordHasher passwordHasher = new BCryptPasswordHasher();
 
-        // --- Services ---
-        UserService userService = new UserServiceImpl(userRepo);
-        LearningService learningService = new LearningServiceImpl(moduleRepo, chapterRepo, lessonRepo);
-        QuestionService questionService = new QuestionServiceImpl(questionRepo);
-        ProgressService progressService = new ProgressServiceImpl(progressRepo, lessonRepo, chapterRepo, moduleRepo);
-        AuthService authService = new AuthServiceImpl(userRepo, passwordHasher, sessionManager);
-        VideoService videoService = new VideoServiceImpl(videoRepo);
-
-        // --- Build the service registry (note the added passwordHasher arg) ---
-        ServiceRegistry registry = new ServiceRegistry(
-                authService,
+        return new ServiceRegistry(
+                new AuthServiceImpl(userRepo, passwordHasher, sessionManager),
                 sessionManager,
-                learningService,
-                questionService,
-                progressService,
-                videoService,
-                userService,
+                new LearningServiceImpl(moduleRepo, chapterRepo, lessonRepo),
+                new QuestionServiceImpl(questionRepo),
+                new ProgressServiceImpl(progressRepo, lessonRepo, chapterRepo, moduleRepo),
+                new VideoServiceImpl(videoRepo),
+                new UserServiceImpl(userRepo),
                 passwordHasher
         );
-
-        // Router loads initial view and shows stage
-        new SceneRouter(stage, registry, View.LANDING);
-
-        stage.setTitle("Wave");
-        stage.setWidth(javafx.stage.Screen.getPrimary().getBounds().getWidth());
-        stage.setHeight(javafx.stage.Screen.getPrimary().getBounds().getHeight());
-        stage.setMaximized(true);
     }
 
     public static void main(String[] args) {

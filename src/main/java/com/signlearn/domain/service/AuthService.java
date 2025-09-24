@@ -1,13 +1,19 @@
 package com.signlearn.domain.service;
 
+import com.signlearn.util.Result;
+import com.signlearn.domain.enums.SignupStatus;
 import com.signlearn.domain.model.User;
 import com.signlearn.domain.value.Email;
-import com.signlearn.util.Result;
-import com.signlearn.util.SignupStatus;
 
 public interface AuthService {
     Result<SignupStatus> shallowSignUp(String email);
-    Result<User> deepSignUpWithPassword(User user, String rawPassword);
+    Result<SignupStatus> deepSignUp(User user);
+
+    boolean isUsernameAvailable(String username);
+
+    /**
+     * Authenticate user with email + password.
+     */
     Result<User> login(Email email, String password);
-    void logout();
 }
+

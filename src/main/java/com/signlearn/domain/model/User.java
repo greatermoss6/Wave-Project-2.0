@@ -2,6 +2,8 @@ package com.signlearn.domain.model;
 
 import com.signlearn.domain.value.Email;
 import com.signlearn.domain.value.Password;
+import com.signlearn.domain.model.Credentials;
+import com.signlearn.domain.enums.Gender;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -11,6 +13,7 @@ import java.time.LocalDate;
  * - Credentials holds Email + Password (hash wrapper)
  * - Replaces 'age' with 'dateOfBirth'
  * - Adds 'username' (unique) and 'createdAt'
+ * - Adds 'gender'
  */
 public class User {
     private long id;
@@ -19,6 +22,7 @@ public class User {
     private String username;             // display name / unique handle
     private LocalDate dateOfBirth;       // replaces 'age'
     private Instant createdAt;           // set by service on creation
+    private Gender gender;               // <-- NEW
 
     // --- Constructors used by repositories/mappers ---
     public User(long id,
@@ -27,13 +31,15 @@ public class User {
                 String name,
                 String username,
                 LocalDate dateOfBirth,
-                Instant createdAt) {
+                Instant createdAt,
+                Gender gender) {
         this.id = id;
         this.credentials = new Credentials(email, passwordHash != null ? Password.hashed(passwordHash) : null);
         this.name = name;
         this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.createdAt = createdAt;
+        this.gender = gender;
     }
 
     // Used by signup (service will set createdAt and hash the password)
@@ -41,23 +47,31 @@ public class User {
                 String passwordHash,
                 String name,
                 String username,
-                LocalDate dateOfBirth) {
-        this(-1, email, passwordHash, name, username, dateOfBirth, null);
+                LocalDate dateOfBirth,
+                Gender gender) {
+        this(-1, email, passwordHash, name, username, dateOfBirth, null, gender);
     }
 
-    // --- Getters/Setters (back-compat preserved where sensible) ---
+    // --- Backwards compatibility constructor ---
+    public User(Email email,
+                String passwordHash,
+                String name,
+                String username,
+                LocalDate dateOfBirth) {
+        this(-1, email, passwordHash, name, username, dateOfBirth, null, Gender.PREFER_NOT_TO_SAY);
+    }
+
+    // --- Getters/Setters ---
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 
     public Email getEmail() { return credentials != null ? credentials.getEmail() : null; }
 
-    /** Returns the password hash string (or null). */
     public String getPasswordHash() {
         if (credentials == null || credentials.getPassword() == null) return null;
         return credentials.getPassword().getHash();
     }
 
-    /** Set password from raw hash (used after service hashes). */
     public void setPasswordHash(String passwordHash) {
         if (credentials == null) throw new IllegalStateException("Credentials not initialized");
         this.credentials = (passwordHash != null)
@@ -82,4 +96,7 @@ public class User {
 
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
+
+    public Gender getGender() { return gender; }
+    public void setGender(Gender gender) { this.gender = gender; }
 }

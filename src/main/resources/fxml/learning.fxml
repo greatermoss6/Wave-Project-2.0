@@ -1,127 +1,277 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.media.Media?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.signlearn.presentation.controller.LearningController"
             stylesheets="@../css/styles.css"
             styleClass="main-container">
 
-    <!-- Navigation Bar -->
+    <!-- Top Navigation -->
     <top>
+        <!-- Main Navigation Bar -->
         <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30">
-            <Label text="🤟 SignLearn" styleClass="nav-title"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <HBox spacing="20" alignment="CENTER_RIGHT">
-                <Label text="Welcome back, Learner!" style="-fx-text-fill: #64748b; -fx-font-size: 16px; -fx-font-weight: 500;"/>
-                <Button text="Profile" fx:id="learningProfileBtn" styleClass="nav-button"/>
-                <Button text="Progress" fx:id="learningProgressBtn" styleClass="nav-button"/>
-                <Button text="Logout" fx:id="logoutBtn" styleClass="nav-button"/>
+            <padding>
+                <Insets top="12" right="24" bottom="12" left="24"/>
+            </padding>
+
+            <!-- User Profile Section (moved to left) -->
+            <HBox spacing="16" alignment="CENTER"
+                  style="-fx-background-color: rgba(168, 85, 247, 0.1); -fx-padding: 10 20; -fx-background-radius: 40;">
+                <Label text="👤" style="-fx-font-size: 22px;"/>
+                <VBox spacing="2" alignment="CENTER_LEFT">
+                    <Label text="Welcome back, Sarah!" style="-fx-text-fill: #1e293b; -fx-font-size: 15px; -fx-font-weight: 700;"/>
+                    <Label text="Level 3 Learner" style="-fx-text-fill: #6366f1; -fx-font-size: 13px; -fx-font-weight: 600;"/>
+                </VBox>
             </HBox>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Stats Section (moved to right) -->
+            <HBox spacing="20" alignment="CENTER">
+
+                <Separator orientation="VERTICAL" prefHeight="40" style="-fx-background-color: rgba(0,0,0,0.3);"/>
+
+                <!-- Daily Streak -->
+                <HBox spacing="12" alignment="CENTER">
+                    <Label text="🔥" style="-fx-font-size: 24px;"/>
+                    <VBox spacing="2" alignment="CENTER_LEFT">
+                        <Label text="Streak" style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: 600;"/>
+                        <Label text="7 Days" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #f59e0b;"/>
+                    </VBox>
+                </HBox>
+
+                <Separator orientation="VERTICAL" prefHeight="40" style="-fx-background-color: rgba(0,0,0,0.1);"/>
+
+                <!-- Progress -->
+                <HBox spacing="12" alignment="CENTER">
+                    <Label text="📊" style="-fx-font-size: 24px;"/>
+                    <VBox spacing="2" alignment="CENTER_LEFT">
+                        <Label text="Progress" style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: 600;"/>
+                        <Label text="42%" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #6366f1;"/>
+                    </VBox>
+                </HBox>
+
+                <Separator orientation="VERTICAL" prefHeight="40" style="-fx-background-color: rgba(0,0,0,0.1);"/>
+
+                <!-- Points -->
+                <HBox spacing="12" alignment="CENTER">
+                    <Label text="⭐" style="-fx-font-size: 24px;"/>
+                    <VBox spacing="2" alignment="CENTER_LEFT">
+                        <Label text="Points" style="-fx-font-size: 12px; -fx-text-fill: #64748b; -fx-font-weight: 600;"/>
+                        <Label text="1,250" style="-fx-font-size: 16px; -fx-font-weight: 800; -fx-text-fill: #a855f7;"/>
+                    </VBox>
+                </HBox>
+            </HBox>
+
+            <Separator orientation="VERTICAL" prefHeight="30" style="-fx-background-color: rgba(0,0,0,0.3);"/>
+
+            <Button text="Quests" fx:id="questsBtn" styleClass="nav-button"/>
+            <Button text="Leaderboard" fx:id="leaderboardBtn" styleClass="nav-button"/>
+            <Button text="Logout" fx:id="logoutBtn" styleClass="nav-button" style="-fx-text-fill: #ef4444;"/>
         </HBox>
     </top>
 
     <!-- Main Content -->
     <center>
-        <VBox styleClass="content-area,spacing-large" VBox.vgrow="ALWAYS">
+        <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                    style="-fx-background: white; -fx-background-color: white;">
+            <VBox styleClass="content-area" spacing="32" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="32" bottom="32" left="32"/>
+                </padding>
 
-            <!-- Header -->
-            <VBox spacing="20" alignment="CENTER">
-                <Label text="Your Learning Dashboard" styleClass="page-title"/>
-                <Label text="Select a module, chapter, and lesson to continue your sign language journey"
-                       styleClass="subtitle" textAlignment="CENTER" maxWidth="960"/>
+                <!-- Learning Controls (positioned to the left) -->
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <!-- Learning Module Selection -->
+                    <VBox spacing="4" alignment="CENTER_LEFT">
+                        <Label text="📘 Module" style="-fx-font-size: 11px; -fx-font-weight: 600; -fx-text-fill: #64748b;"/>
+                        <ComboBox fx:id="moduleComboBox" prefWidth="180" styleClass="form-field"
+                                  promptText="Select module..." style="-fx-font-size: 12px; -fx-padding: 8 12;"/>
+                    </VBox>
+
+                    <!-- Chapter Selection -->
+                    <VBox spacing="4" alignment="CENTER_LEFT">
+                        <Label text="📖 Chapter" style="-fx-font-size: 11px; -fx-font-weight: 600; -fx-text-fill: #64748b;"/>
+                        <ComboBox fx:id="chapterComboBox" prefWidth="180" styleClass="form-field"
+                                  promptText="Select chapter..." style="-fx-font-size: 12px; -fx-padding: 8 12;"/>
+                    </VBox>
+
+                    <!-- Action Buttons -->
+                    <HBox spacing="12" alignment="CENTER">
+                        <Button fx:id="openLessonBtn"
+                                text="🚀 Start Lesson"
+                                styleClass="btn-primary"
+                                style="-fx-font-size: 13px; -fx-padding: 8 16; -fx-font-weight: 600; -fx-background-color: #6366f1; -fx-text-fill: white; -fx-background-radius: 8;"/>
+                        <Separator orientation="VERTICAL" prefHeight="30" style="-fx-background-color: rgba(0,0,0,0.2);"/>
+                        <Button text="📚 Continue Last"
+                                style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-padding: 8 16; -fx-background-radius: 8; -fx-font-weight: 600; -fx-cursor: hand;"/>
+                    </HBox>
+                </HBox>
+
+                <!-- Simple Lesson Title -->
+                <HBox alignment="CENTER">
+                    <Label fx:id="lessonTitleLabel" text="Introduction to Sign Language"
+                           style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"
+                           visible="false" managed="false"/>
+                </HBox>
+
+                <!-- Video Lesson Container (wrapped for independent centering) -->
+                <HBox alignment="CENTER">
+                    <VBox fx:id="videoLessonContainer" spacing="24" alignment="CENTER" maxWidth="1200">
+
+                        <!-- Video Player -->
+                        <VBox spacing="20" alignment="CENTER" maxWidth="1100">
+                            <!-- Video Display -->
+                            <VBox alignment="CENTER" styleClass="feature-card">
+                                <Pane fx:id="videoPane" styleClass="media-container"
+                                      style="-fx-pref-width: 900; -fx-pref-height: 600; -fx-max-width: 900; -fx-max-height: 600;">
+                                    <MediaView fx:id="mediaView" preserveRatio="true"
+                                               fitWidth="900" fitHeight="600">
+                                    </MediaView>
+                                </Pane>
+                            </VBox>
+
+                            <!-- Video Controls -->
+                            <VBox spacing="16" alignment="CENTER" maxWidth="900" styleClass="feature-card">
+                                <!-- Scrubber -->
+                                <HBox spacing="12" alignment="CENTER" maxWidth="850">
+                                    <Label fx:id="currentTimeLabel" text="0:00" styleClass="time-label"
+                                           style="-fx-min-width: 40; -fx-font-size: 12px;"/>
+                                    <Slider fx:id="scrubber" min="0.0" max="100.0" value="0.0"
+                                            HBox.hgrow="ALWAYS" styleClass="video-slider"/>
+                                    <Label fx:id="totalTimeLabel" text="0:00" styleClass="time-label"
+                                           style="-fx-min-width: 40; -fx-font-size: 12px;"/>
+                                </HBox>
+
+                                <!-- Control Buttons -->
+                                <HBox spacing="20" alignment="CENTER">
+                                    <!-- Playback Controls -->
+                                    <HBox spacing="8" alignment="CENTER">
+                                        <Button fx:id="rewindButton" text="⏪" styleClass="play-pause-btn"
+                                                style="-fx-min-width: 40; -fx-font-size: 14px;"/>
+                                        <Button fx:id="playPauseButton" text="▶" styleClass="play-pause-btn"
+                                                style="-fx-min-width: 50; -fx-font-size: 16px;"/>
+                                        <Button fx:id="forwardButton" text="⏩" styleClass="play-pause-btn"
+                                                style="-fx-min-width: 40; -fx-font-size: 14px;"/>
+                                    </HBox>
+
+                                    <Separator orientation="VERTICAL" maxHeight="30"
+                                               visible="false" managed="false"/>
+
+                                    <!-- Speed Control -->
+                                    <HBox spacing="8" alignment="CENTER"
+                                          visible="false" managed="false">
+
+                                        <Label text="Speed:" style="-fx-font-weight: 600; -fx-font-size: 13px;"/>
+                                        <ComboBox fx:id="speedComboBox" prefWidth="70" styleClass="form-field"
+                                                  style="-fx-font-size: 12px; -fx-padding: 4 8;"/>
+                                    </HBox>
+
+                                    <Separator orientation="VERTICAL" maxHeight="30"
+                                               visible="false" managed="false"/>
+
+                                    <!-- Angle Selection -->
+                                    <HBox spacing="8" alignment="CENTER"
+                                          visible="false" managed="false">
+
+                                        <Label text="Angle:" style="-fx-font-weight: 600; -fx-font-size: 13px;"/>
+                                        <fx:define>
+                                            <ToggleGroup fx:id="angleToggleGroup"/>
+                                        </fx:define>
+                                        <RadioButton fx:id="angleLeft" text="Left" toggleGroup="$angleToggleGroup"
+                                                     style="-fx-font-size: 12px;"/>
+                                        <RadioButton fx:id="angleCenter" text="Center" selected="true" toggleGroup="$angleToggleGroup"
+                                                     style="-fx-font-size: 12px;"/>
+                                        <RadioButton fx:id="angleRight" text="Right" toggleGroup="$angleToggleGroup"
+                                                     style="-fx-font-size: 12px;"/>
+                                    </HBox>
+                                </HBox>
+                            </VBox>
+                        </VBox>
+                    </VBox>
+                </HBox>
+
+                <!-- Quiz Questions Section (wrapped for independent centering) -->
+                <HBox alignment="CENTER">
+                    <VBox fx:id="quizQuestionsContainer" spacing="20" alignment="CENTER" maxWidth="1200"
+                          visible="false" managed="false">
+
+                        <!-- Quiz Header -->
+                        <VBox spacing="8" alignment="CENTER" styleClass="feature-card" maxWidth="900">
+                            <HBox spacing="16" alignment="CENTER">
+                                <Label text="🧠" style="-fx-font-size: 28px;"/>
+                                <VBox spacing="4" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                                    <Label text="Practice Questions"
+                                           style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+                                    <Label text="Test your understanding with these interactive questions"
+                                           style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                                </VBox>
+                                <HBox spacing="8" alignment="CENTER">
+                                    <Label fx:id="completedQuestionsLabel" text="0/5"
+                                           style="-fx-font-size: 16px; -fx-font-weight: 700; -fx-text-fill: #6366f1;"/>
+                                    <Label text="completed"
+                                           style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                                </HBox>
+                            </HBox>
+                            <ProgressBar fx:id="quizProgressBar" progress="0.0" prefWidth="850" prefHeight="8" styleClass="progress-bar"/>
+                        </VBox>
+
+                        <!-- Questions Grid -->
+                        <GridPane fx:id="questionsGrid" hgap="20" vgap="20" alignment="CENTER" maxWidth="1000">
+                            <!-- Questions will be dynamically generated here -->
+                        </GridPane>
+
+                        <!-- Quiz Actions -->
+                        <HBox spacing="16" alignment="CENTER">
+                            <Button fx:id="resetQuizBtn" text="🔄 Reset Progress"
+                                    style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 8; -fx-font-weight: 600;"/>
+                            <Button fx:id="viewResultsBtn" text="📋 View Results"
+                                    style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 8; -fx-font-weight: 600;"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <!-- Completion Animation Container (wrapped for independent centering) -->
+                <HBox alignment="CENTER">
+                    <StackPane fx:id="completionContainer" alignment="CENTER" maxWidth="1200">
+                        <VBox fx:id="completionCard" spacing="16" alignment="CENTER"
+                              styleClass="feature-card" visible="false" opacity="0"
+                              style="-fx-padding: 40; -fx-background-color: rgba(16, 185, 129, 0.1); -fx-border-color: #10b981; -fx-border-radius: 12; -fx-background-radius: 12;">
+                            <Label text="🎉" style="-fx-font-size: 48px;"/>
+                            <Label text="Chapter Complete!"
+                                   style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #059669;"/>
+                            <Label text="Great job! You've mastered this lesson."
+                                   style="-fx-font-size: 16px; -fx-text-fill: #047857;"/>
+                            <HBox spacing="16" alignment="CENTER">
+                                <Button text="Next Chapter"
+                                        style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-padding: 12 24; -fx-background-radius: 8; -fx-font-weight: 600;"/>
+                                <Button text="Back to Dashboard"
+                                        style="-fx-background-color: #6366f1; -fx-text-fill: white; -fx-padding: 12 24; -fx-background-radius: 8; -fx-font-weight: 600;"/>
+                            </HBox>
+                        </VBox>
+                    </StackPane>
+                </HBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
             </VBox>
-
-            <!-- Learning Progress Overview -->
-            <HBox styleClass="stats-section" spacing="64" alignment="CENTER" prefWidth="960" maxWidth="800">
-                <VBox spacing="12" alignment="CENTER" prefWidth="288">
-                    <Label text="🎯" style="-fx-font-size: 32px;"/>
-                    <Label text="Modules Completed" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
-                    <Label text="3 / 12" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
-                </VBox>
-                <VBox spacing="12" alignment="CENTER" prefWidth="288">
-                    <Label text="🏆" style="-fx-font-size: 32px;"/>
-                    <Label text="Current Streak" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
-                    <Label text="7 days" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
-                </VBox>
-                <VBox spacing="12" alignment="CENTER" prefWidth="288">
-                    <Label text="⭐" style="-fx-font-size: 32px;"/>
-                    <Label text="Points Earned" style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
-                    <Label text="1,250" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #667eea;"/>
-                </VBox>
-            </HBox>
-
-            <!-- Learning Content Selection -->
-            <GridPane hgap="20" vgap="20" alignment="CENTER" VBox.vgrow="ALWAYS" prefWidth="1080">
-
-                <!-- Modules Column -->
-                <VBox styleClass="dashboard-column" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="336">
-                    <Label text="📚 Learning Modules" styleClass="column-header"/>
-                    <ListView fx:id="moduleList"
-                              styleClass="content-list"
-                              prefHeight="320"
-                              VBox.vgrow="ALWAYS"/>
-                    <Label text="Choose your learning module to begin"
-                           style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: 500;"
-                           wrapText="true"/>
-                </VBox>
-
-                <!-- Chapters Column -->
-                <VBox styleClass="dashboard-column" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="360">
-                    <Label text="📖 Chapters" styleClass="column-header"/>
-                    <ListView fx:id="chapterList"
-                              styleClass="content-list"
-                              prefHeight="320"
-                              VBox.vgrow="ALWAYS"/>
-                    <Label text="Select a chapter to explore its lessons"
-                           style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: 500;"
-                           wrapText="true"/>
-                </VBox>
-
-                <!-- Lessons Column -->
-                <VBox styleClass="dashboard-column" GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="840">
-                    <Label text="🎥 Lessons" styleClass="column-header"/>
-                    <ListView fx:id="lessonList"
-                              styleClass="content-list"
-                              prefHeight="320"
-                              VBox.vgrow="ALWAYS"/>
-                    <Label text="Pick a lesson to start your learning session"
-                           style="-fx-font-size: 13px; -fx-text-fill: #64748b; -fx-font-weight: 500;"
-                           wrapText="true"/>
-                </VBox>
-
-            </GridPane>
-
-            <!-- Action Section -->
-            <VBox spacing="24" alignment="CENTER">
-                <Button fx:id="openLessonBtn"
-                        text="🎬 Start Selected Lesson"
-                        styleClass="btn-primary"
-                        style="-fx-font-size: 20px; -fx-padding: 20 40;"
-                        prefWidth="360"
-                        minWidth="300"/>
-
-                <VBox styleClass="info-section" spacing="12" alignment="CENTER" maxWidth="840">
-                    <Label text="💡 Learning Tip"
-                           style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #2563eb;"/>
-                    <Label text="Complete lessons in order to unlock new content and maximize your learning progress. Each lesson builds upon the previous one for optimal comprehension."
-                           style="-fx-font-size: 15px; -fx-text-fill: #2563eb; -fx-text-alignment: center; -fx-font-weight: 500;"
-                           textAlignment="CENTER"
-                           wrapText="true"/>
-                </VBox>
-            </VBox>
-
-        </VBox>
+        </ScrollPane>
     </center>
 
     <!-- Footer -->
     <bottom>
-        <HBox styleClass="footer" alignment="CENTER">
-            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
-        </HBox>
+        <VBox styleClass="footer" alignment="CENTER" spacing="8" maxHeight="50" minHeight="45">
+            <HBox alignment="CENTER">
+                <Label text="Learn Sign Language with Ease" styleClass="footer-text" style="-fx-font-size: 10px;"/>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label text="© 2025 SignLearn. All rights reserved." styleClass="footer-text,footer-copyright" style="-fx-font-size: 8px;"/>
+            </HBox>
+        </VBox>
     </bottom>
 
 </BorderPane>

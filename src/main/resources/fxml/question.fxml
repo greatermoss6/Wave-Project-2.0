@@ -1,126 +1,248 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.media.MediaView?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.signlearn.presentation.controller.QuestionController"
             stylesheets="@../css/styles.css"
             styleClass="main-container">
 
-    <!-- Navigation Bar -->
+    <!-- Premium Navigation Bar -->
     <top>
         <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30">
-            <Label text="🤟 SignLearn" styleClass="nav-title"/>
+            <Button fx:id="backButton" styleClass="nav-button">
+                <graphic>
+                    <Label text="←" style="-fx-font-size: 16px;"/>
+                </graphic>
+                Back to Learning Path
+            </Button>
+
             <Region HBox.hgrow="ALWAYS"/>
-            <HBox spacing="20" alignment="CENTER_RIGHT">
-                <Label text="Knowledge Assessment" style="-fx-text-fill: #64748b; -fx-font-size: 16px; -fx-font-weight: 600;"/>
-                <Button text="Dashboard" fx:id="questionDashboardBtn" styleClass="nav-button"/>
-                <Button text="Progress" fx:id="questionProgressBtn" styleClass="nav-button"/>
-                <Button text="Logout" fx:id="questionLogoutBtn" styleClass="nav-button"/>
+
+            <Label fx:id="lessonTitle" text="Welcome to Sign Language" styleClass="nav-title"
+                   style="-fx-font-size: 24px;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <HBox spacing="12" alignment="CENTER" styleClass="stats-section"
+                  style="-fx-padding: 12 20; -fx-background-radius: 16;">
+                <Label fx:id="progressLabel" text="Question 1 of 5"
+                       style="-fx-font-size: 14px; -fx-text-fill: #6366f1; -fx-font-weight: 600;"/>
+                <ProgressBar fx:id="lessonProgressBar" prefWidth="100" progress="0.2" styleClass="progress-bar"/>
             </HBox>
         </HBox>
     </top>
 
+    <!-- Navigation Arrows -->
+    <left>
+        <VBox alignment="CENTER" style="-fx-padding: 0 16 0 16;">
+            <Button fx:id="previousButton" text="←" styleClass="btn-secondary"
+                    style="-fx-font-size: 24px; -fx-min-width: 50; -fx-min-height: 50; -fx-background-radius: 25;"/>
+        </VBox>
+    </left>
+
+    <right>
+        <VBox alignment="CENTER" style="-fx-padding: 0 16 0 16;">
+            <Button fx:id="forwardButton" text="→" styleClass="btn-secondary"
+                    style="-fx-font-size: 24px; -fx-min-width: 50; -fx-min-height: 50; -fx-background-radius: 25;"/>
+        </VBox>
+    </right>
+
     <!-- Main Content -->
     <center>
-        <VBox styleClass="content-area,spacing-large" VBox.vgrow="ALWAYS">
+        <StackPane fx:id="centerStackPane" styleClass="content-area">
+            <!-- Animated background particles -->
+            <Pane fx:id="starPane" style="-fx-background-color: transparent;" pickOnBounds="false"/>
 
-            <!-- Header -->
-            <VBox spacing="20" alignment="CENTER">
-                <Label text="Knowledge Assessment" styleClass="page-title"/>
-                <Label text="Test your understanding of the lesson material and reinforce your learning"
-                       styleClass="subtitle" textAlignment="CENTER" maxWidth="640"/>
-            </VBox>
+            <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="AS_NEEDED" vbarPolicy="AS_NEEDED"
+                        style="-fx-background-color: transparent;">
+                <VBox styleClass="spacing-large" alignment="CENTER" VBox.vgrow="ALWAYS">
 
-            <!-- Quiz Progress -->
-            <VBox styleClass="stats-section" spacing="16" alignment="CENTER" maxWidth="600">
-                <Label text="Question 1 of 5"
-                       style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
-                <HBox spacing="24" alignment="CENTER" prefWidth="600">
-                    <Region styleClass="progress-indicator" prefWidth="108" prefHeight="8"/>
-                    <Region styleClass="progress-inactive" prefWidth="108" prefHeight="8"/>
-                    <Region styleClass="progress-inactive" prefWidth="108" prefHeight="8"/>
-                    <Region styleClass="progress-inactive" prefWidth="108" prefHeight="8"/>
-                    <Region styleClass="progress-inactive" prefWidth="108" prefHeight="8"/>
-                </HBox>
-            </VBox>
-
-            <!-- Question Section -->
-            <VBox spacing="32" alignment="CENTER" VBox.vgrow="ALWAYS">
-
-                <!-- Question Container -->
-                <VBox styleClass="question-container" spacing="24" alignment="CENTER" maxWidth="1080" prefWidth="960">
-                    <Label fx:id="promptLabel"
-                           wrapText="true"
-                           textAlignment="CENTER"
-                           style="-fx-font-size: 24px; -fx-font-weight: 600; -fx-text-fill: #1e293b; -fx-line-spacing: 1.5;"/>
-
-                    <!-- Question Image Placeholder -->
-                    <VBox spacing="16" alignment="CENTER"
-                          styleClass="feature-card"
-                          style="-fx-padding: 32; -fx-min-height: 200; -fx-pref-width: 80%;">
-                        <Label text="🤲" style="-fx-font-size: 64px;"/>
-                        <Label text="Sign demonstration would appear here"
-                               style="-fx-font-size: 16px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
-                        <Label text="Watch carefully and select the correct answer below"
-                               style="-fx-font-size: 14px; -fx-text-fill: #94a3b8; -fx-font-style: italic;"/>
+                    <!-- Enhanced Header -->
+                    <VBox spacing="20" alignment="CENTER">
+                        <Label text="Knowledge Assessment" styleClass="page-title" style="-fx-font-size: 42px;"/>
+                        <Label text="Test your understanding of the lesson material and reinforce your learning"
+                               styleClass="subtitle" textAlignment="CENTER" maxWidth="640"/>
                     </VBox>
+
+                    <!-- Main Content Grid -->
+                    <HBox spacing="40" alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+
+                        <!-- Video Section -->
+                        <VBox spacing="24" alignment="TOP_CENTER" minWidth="400">
+                            <!-- Video Container with Premium Styling -->
+                            <VBox spacing="16" alignment="CENTER" styleClass="feature-card">
+                                <Label text="Sign Demonstration"
+                                       style="-fx-font-size: 20px; -fx-font-weight: 600; -fx-text-fill: #1e293b;"/>
+
+                                <Pane fx:id="videoPane" styleClass="media-container"
+                                      style="-fx-pref-width: 400; -fx-pref-height: 300; -fx-max-width: 400; -fx-max-height: 300;">
+                                    <MediaView fx:id="mediaView" fitWidth="400" fitHeight="300" preserveRatio="true"/>
+                                </Pane>
+
+                                <!-- Video Controls -->
+                                <VBox spacing="16" alignment="CENTER" maxWidth="380">
+                                    <!-- Speed Control -->
+                                    <HBox spacing="12" alignment="CENTER" styleClass="info-section"
+                                          style="-fx-padding: 16 20;">
+                                        <Label text="Speed:" styleClass="body-text" style="-fx-font-weight: 600;"/>
+                                        <Slider fx:id="speedSlider" min="0.0" max="2.0" value="1.0"
+                                                prefWidth="200" styleClass="video-slider"/>
+                                        <Label fx:id="speedLabel" text="1.0x"
+                                               style="-fx-text-fill: #64748b; -fx-font-size: 14px; -fx-font-weight: 600;"
+                                               minWidth="40"/>
+                                    </HBox>
+
+                                    <!-- Angle Selection -->
+                                    <HBox spacing="16" alignment="CENTER" styleClass="tip-section"
+                                          style="-fx-padding: 16 20;">
+                                        <Label text="Angle:" styleClass="body-text" style="-fx-font-weight: 600;"/>
+                                        <fx:define>
+                                            <ToggleGroup fx:id="angleToggleGroup"/>
+                                        </fx:define>
+                                        <RadioButton fx:id="leftAngle" text="Left" toggleGroup="$angleToggleGroup"
+                                                     style="-fx-text-fill: #92400e; -fx-font-weight: 600;"/>
+                                        <RadioButton fx:id="centerAngle" text="Center" selected="true" toggleGroup="$angleToggleGroup"
+                                                     style="-fx-text-fill: #92400e; -fx-font-weight: 600;"/>
+                                        <RadioButton fx:id="rightAngle" text="Right" toggleGroup="$angleToggleGroup"
+                                                     style="-fx-text-fill: #92400e; -fx-font-weight: 600;"/>
+                                    </HBox>
+                                </VBox>
+                            </VBox>
+                        </VBox>
+
+                        <!-- Question and Options Section -->
+                        <VBox spacing="32" alignment="TOP_CENTER" VBox.vgrow="ALWAYS" minWidth="500">
+
+                            <!-- Question Container -->
+                            <VBox styleClass="question-container" spacing="24" alignment="CENTER" maxWidth="600">
+                                <Label fx:id="questionLabel" text="What sign is being demonstrated in the video?"
+                                       wrapText="true" textAlignment="CENTER"
+                                       style="-fx-font-size: 24px; -fx-font-weight: 600; -fx-text-fill: #1e293b; -fx-line-spacing: 1.5;"/>
+                            </VBox>
+
+                            <!-- Answer Options with Premium Styling -->
+                            <VBox fx:id="optionsBox" spacing="20" alignment="CENTER" maxWidth="600">
+                                <fx:define>
+                                    <ToggleGroup fx:id="toggleGroup"/>
+                                </fx:define>
+
+                                <!-- Option 1 -->
+                                <VBox spacing="8" alignment="CENTER">
+                                    <HBox fx:id="option1Container" styleClass="question-option" maxWidth="500" prefWidth="500">
+                                        <RadioButton fx:id="option1" text="Hello" toggleGroup="$toggleGroup"
+                                                     style="-fx-font-size: 18px; -fx-font-weight: 500; -fx-text-fill: inherit;"/>
+                                        <Region HBox.hgrow="ALWAYS"/>
+                                        <Label fx:id="option1Result" text="" style="-fx-font-size: 20px;" visible="false"/>
+                                    </HBox>
+                                    <VBox fx:id="option1Explanation" spacing="4" visible="false" managed="false"
+                                          styleClass="info-section" maxWidth="500">
+                                        <Label fx:id="option1ExplanationText" text="" wrapText="true"
+                                               style="-fx-font-size: 15px; -fx-text-fill: #2563eb; -fx-line-spacing: 1.3;"/>
+                                    </VBox>
+                                </VBox>
+
+                                <!-- Option 2 -->
+                                <VBox spacing="8" alignment="CENTER">
+                                    <HBox fx:id="option2Container" styleClass="question-option" maxWidth="500" prefWidth="500">
+                                        <RadioButton fx:id="option2" text="Thank you" toggleGroup="$toggleGroup"
+                                                     style="-fx-font-size: 18px; -fx-font-weight: 500; -fx-text-fill: inherit;"/>
+                                        <Region HBox.hgrow="ALWAYS"/>
+                                        <Label fx:id="option2Result" text="" style="-fx-font-size: 20px;" visible="false"/>
+                                    </HBox>
+                                    <VBox fx:id="option2Explanation" spacing="4" visible="false" managed="false"
+                                          styleClass="info-section" maxWidth="500">
+                                        <Label fx:id="option2ExplanationText" text="" wrapText="true"
+                                               style="-fx-font-size: 15px; -fx-text-fill: #2563eb; -fx-line-spacing: 1.3;"/>
+                                    </VBox>
+                                </VBox>
+
+                                <!-- Option 3 -->
+                                <VBox spacing="8" alignment="CENTER">
+                                    <HBox fx:id="option3Container" styleClass="question-option" maxWidth="500" prefWidth="500">
+                                        <RadioButton fx:id="option3" text="Goodbye" toggleGroup="$toggleGroup"
+                                                     style="-fx-font-size: 18px; -fx-font-weight: 500; -fx-text-fill: inherit;"/>
+                                        <Region HBox.hgrow="ALWAYS"/>
+                                        <Label fx:id="option3Result" text="" style="-fx-font-size: 20px;" visible="false"/>
+                                    </HBox>
+                                    <VBox fx:id="option3Explanation" spacing="4" visible="false" managed="false"
+                                          styleClass="info-section" maxWidth="500">
+                                        <Label fx:id="option3ExplanationText" text="" wrapText="true"
+                                               style="-fx-font-size: 15px; -fx-text-fill: #2563eb; -fx-line-spacing: 1.3;"/>
+                                    </VBox>
+                                </VBox>
+
+                                <!-- Option 4 -->
+                                <VBox spacing="8" alignment="CENTER">
+                                    <HBox fx:id="option4Container" styleClass="question-option" maxWidth="500" prefWidth="500">
+                                        <RadioButton fx:id="option4" text="Please" toggleGroup="$toggleGroup"
+                                                     style="-fx-font-size: 18px; -fx-font-weight: 500; -fx-text-fill: inherit;"/>
+                                        <Region HBox.hgrow="ALWAYS"/>
+                                        <Label fx:id="option4Result" text="" style="-fx-font-size: 20px;" visible="false"/>
+                                    </HBox>
+                                    <VBox fx:id="option4Explanation" spacing="4" visible="false" managed="false"
+                                          styleClass="info-section" maxWidth="500">
+                                        <Label fx:id="option4ExplanationText" text="" wrapText="true"
+                                               style="-fx-font-size: 15px; -fx-text-fill: #2563eb; -fx-line-spacing: 1.3;"/>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+
+                            <!-- Learning Tips Section -->
+                            <VBox styleClass="tip-section" spacing="16" alignment="CENTER" maxWidth="600">
+                                <HBox spacing="12" alignment="CENTER">
+                                    <Label text="💡" style="-fx-font-size: 20px;"/>
+                                    <Label text="Assessment Tip"
+                                           style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #92400e;"/>
+                                </HBox>
+                                <Label text="Watch the video carefully and consider the hand shape, movement, and position. Each sign has unique characteristics that distinguish it from others."
+                                       style="-fx-font-size: 15px; -fx-text-fill: #92400e; -fx-text-alignment: center; -fx-font-weight: 500;"
+                                       textAlignment="CENTER" wrapText="true"/>
+                            </VBox>
+
+                            <Region VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                    </HBox>
                 </VBox>
-
-                <!-- Answer Options -->
-                <VBox fx:id="optionsBox"
-                      spacing="20"
-                      alignment="CENTER"
-                      maxWidth="960"
-                      VBox.vgrow="ALWAYS"/>
-
-            </VBox>
-
-            <!-- Feedback Section -->
-            <VBox spacing="20" alignment="CENTER">
-                <Label fx:id="feedbackLabel"
-                       wrapText="true"
-                       textAlignment="CENTER"
-                       style="-fx-min-height: 50px; -fx-font-size: 16px; -fx-font-weight: 500;"
-                       maxWidth="960"/>
-            </VBox>
-
-            <!-- Action Buttons -->
-            <HBox spacing="32" alignment="CENTER" prefWidth="720">
-                <Button fx:id="backBtn"
-                        text="← Back to Video Lesson"
-                        styleClass="btn-secondary"
-                        style="-fx-font-size: 16px;"
-                        prefWidth="336"/>
-
-                <Button fx:id="submitBtn"
-                        text="Submit Answer"
-                        styleClass="btn-primary"
-                        style="-fx-font-weight: 600; -fx-font-size: 16px; -fx-padding: 20 40;"
-                        prefWidth="336"/>
-            </HBox>
-
-            <!-- Quiz Help -->
-            <VBox styleClass="tip-section" spacing="16" alignment="CENTER" maxWidth="840">
-                <Label text="💡 Assessment Tip"
-                       style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #92400e;"/>
-                <Label text="Take your time to think about the lesson content. You can review the video if needed! Each question is designed to reinforce what you've learned."
-                       style="-fx-font-size: 15px; -fx-text-fill: #92400e; -fx-text-alignment: center; -fx-font-weight: 500;"
-                       textAlignment="CENTER"
-                       wrapText="true"/>
-            </VBox>
-
-        </VBox>
+            </ScrollPane>
+        </StackPane>
     </center>
 
-    <!-- Footer -->
+    <!-- Premium Footer with Controls -->
     <bottom>
-        <HBox styleClass="footer" alignment="CENTER">
-            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
+        <HBox styleClass="footer" alignment="CENTER" spacing="24">
+            <!-- Lesson Description -->
+            <VBox spacing="4" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" maxWidth="400">
+                <Label text="Current Lesson"
+                       style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 600;"/>
+                <Label fx:id="lessonDescription"
+                       text="Learn basic greeting signs including hello, goodbye, thank you and please. These are fundamental signs used in everyday interactions and form the foundation of polite communication in sign language."
+                       wrapText="true" styleClass="footer-text"/>
+            </VBox>
+
+            <!-- Control Buttons -->
+            <HBox spacing="16" alignment="CENTER">
+                <Button fx:id="resetButton" text="Reset Questions" onAction="#handleResetQuestions"
+                        style="-fx-background-color: rgba(239,68,68,0.1); -fx-text-fill: #ef4444; -fx-font-weight: 500; -fx-font-size: 14px; -fx-padding: 12 20; -fx-background-radius: 8; -fx-cursor: hand; -fx-border-color: rgba(239,68,68,0.3); -fx-border-width: 1.5; -fx-border-radius: 8;"/>
+
+                <Button fx:id="hintButton" text="💡 Hint" onAction="#handleHint" styleClass="btn-secondary"
+                        style="-fx-font-size: 14px; -fx-padding: 12 20;"/>
+
+                <Button fx:id="revealButton" text="Show Answer" onAction="#handleRevealAnswer"
+                        visible="false" managed="false" styleClass="btn-accent"
+                        style="-fx-font-size: 14px; -fx-padding: 12 20;"/>
+
+                <Button fx:id="checkAnswerButton" text="Check Answer" onAction="#handleCheckAnswer"
+                        visible="true" managed="true" styleClass="btn-primary"
+                        style="-fx-font-size: 16px; -fx-padding: 16 32;" minWidth="150"/>
+
+                <Button fx:id="nextQuestionButton" text="Next Question →" onAction="#handleNextQuestion"
+                        visible="false" managed="false" styleClass="btn-primary"
+                        style="-fx-font-size: 16px; -fx-padding: 16 32;" minWidth="150"/>
+            </HBox>
         </HBox>
     </bottom>
-
 </BorderPane>

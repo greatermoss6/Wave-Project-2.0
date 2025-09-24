@@ -2,44 +2,52 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.signlearn.presentation.controller.ContactController"
             stylesheets="@../css/styles.css"
-            styleClass="main-container">
+            styleClass="root">
 
     <!-- Navigation Bar -->
     <top>
-        <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30">
+        <HBox styleClass="nav-bar" alignment="CENTER" spacing="30" fillHeight="false">
+            <!-- Logo on the left -->
             <Label text="🤟 SignLearn" styleClass="nav-title"/>
+
+            <!-- Flexible space to balance the layout -->
             <Region HBox.hgrow="ALWAYS"/>
-            <HBox spacing="20" alignment="CENTER_RIGHT">
-                <Button text="Home" fx:id="landingBtn" styleClass="nav-button"/>
+
+            <!-- Main navigation buttons (centered) -->
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="Home" fx:id="homeBtn" styleClass="nav-button"/>
                 <Button text="About" fx:id="aboutBtn" styleClass="nav-button"/>
                 <Button text="Contact" styleClass="nav-button,active"/>
-                <Button text="Login" fx:id="loginBtn" styleClass="nav-button"/>
-                <Button text="Sign Up" fx:id="signupBtn" styleClass="nav-button"/>
+            </HBox>
+
+            <!-- Flexible space to push Login/Sign Up to the right -->
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Login and Sign Up buttons (right-aligned, grouped) -->
+            <HBox styleClass="auth-buttons" spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Login" fx:id="loginBtn" styleClass="auth-button,login-button"/>
+                <Button text="Sign Up" fx:id="signupBtn" styleClass="auth-button,signup-button"/>
             </HBox>
         </HBox>
     </top>
 
-    <!-- Main Content -->
+    <!-- Main Content (Unchanged) -->
     <center>
         <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
             <VBox styleClass="content-area,spacing-large" alignment="TOP_CENTER">
-
                 <!-- Header -->
                 <VBox spacing="20" alignment="CENTER">
                     <Label text="Get in Touch" styleClass="page-title"/>
                     <Label text="We're here to support you on your sign language learning journey. Reach out with questions, feedback, or just to say hello!"
                            styleClass="subtitle" textAlignment="CENTER" maxWidth="640"/>
                 </VBox>
-
                 <!-- Contact Methods -->
                 <GridPane hgap="32" vgap="40" alignment="CENTER" prefWidth="960">
-
                     <!-- Email Support -->
                     <VBox styleClass="feature-card" spacing="24" alignment="CENTER" prefWidth="448" GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <Label text="📧" style="-fx-font-size: 56px;"/>
@@ -53,7 +61,6 @@
                                    style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
                         </VBox>
                     </VBox>
-
                     <!-- Live Chat -->
                     <VBox styleClass="feature-card" spacing="24" alignment="CENTER" prefWidth="448" GridPane.columnIndex="1" GridPane.rowIndex="0">
                         <Label text="💬" style="-fx-font-size: 56px;"/>
@@ -67,13 +74,10 @@
                                    style="-fx-font-size: 14px; -fx-text-fill: #64748b; -fx-font-weight: 500;" textAlignment="CENTER" wrapText="true"/>
                         </VBox>
                     </VBox>
-
                 </GridPane>
-
                 <!-- FAQ Section -->
                 <VBox spacing="32" alignment="CENTER" maxWidth="1080">
                     <Label text="Frequently Asked Questions" styleClass="section-title"/>
-
                     <VBox spacing="24" maxWidth="1080">
                         <VBox styleClass="feature-card" spacing="16">
                             <Label text="Q: How do I reset my password?"
@@ -81,21 +85,18 @@
                             <Label text="A: Click 'Forgot Password' on the login page and follow the email instructions. If you don't receive the email within 10 minutes, check your spam folder or contact support."
                                    styleClass="body-text" wrapText="true"/>
                         </VBox>
-
                         <VBox styleClass="feature-card" spacing="16">
                             <Label text="Q: Can I download lessons for offline viewing?"
                                    style="-fx-font-size: 18px; -fx-font-weight: 600; -fx-text-fill: #1e293b;"/>
                             <Label text="A: While our lessons currently require an internet connection for the best interactive experience, we're developing offline capabilities that will be available in our upcoming mobile app launch."
                                    styleClass="body-text" wrapText="true"/>
                         </VBox>
-
                         <VBox styleClass="feature-card" spacing="16">
                             <Label text="Q: How long does it take to complete a module?"
                                    style="-fx-font-size: 18px; -fx-font-weight: 600; -fx-text-fill: #1e293b;"/>
                             <Label text="A: Most modules take 2-4 hours to complete, including video lessons and practice exercises. However, our adaptive learning system allows you to learn at your own pace for optimal retention."
                                    styleClass="body-text" wrapText="true"/>
                         </VBox>
-
                         <VBox styleClass="feature-card" spacing="16">
                             <Label text="Q: Do you offer certificates upon completion?"
                                    style="-fx-font-size: 18px; -fx-font-weight: 600; -fx-text-fill: #1e293b;"/>
@@ -104,29 +105,33 @@
                         </VBox>
                     </VBox>
                 </VBox>
-
                 <!-- Get In Touch Section -->
                 <VBox styleClass="info-section" spacing="20" alignment="CENTER" maxWidth="840">
                     <Label text="Have More Questions?" styleClass="section-title"/>
                     <Label text="For detailed inquiries about our courses, accessibility features, or partnership opportunities, please email us directly at support@signlearn.com. Our dedicated team is committed to helping you succeed in your sign language learning journey and fostering inclusive communication."
                            styleClass="body-text" wrapText="true" textAlignment="CENTER"/>
                 </VBox>
-
                 <!-- CTA Section -->
                 <HBox spacing="24" alignment="CENTER">
                     <Button text="Start Learning Today" fx:id="contactSignupBtn" styleClass="btn-primary"/>
                     <Button text="Learn More About Us" fx:id="contactAboutBtn" styleClass="btn-secondary"/>
                 </HBox>
-
             </VBox>
         </ScrollPane>
     </center>
 
     <!-- Footer -->
     <bottom>
-        <HBox styleClass="footer" alignment="CENTER">
-            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
-        </HBox>
+        <VBox styleClass="footer" alignment="CENTER" spacing="8" maxHeight="50" minHeight="45">
+            <!-- Top level: Tagline and Sign In Link -->
+            <HBox alignment="CENTER">
+                <Label text="Learn Sign Language with Ease" styleClass="footer-text" style="-fx-font-size: 10px;"/>
+            </HBox>
+            <!-- Bottom level: Copyright -->
+            <HBox alignment="CENTER">
+                <Label text="© 2025 SignLearn. All rights reserved." styleClass="footer-text,footer-copyright" style="-fx-font-size: 8px;"/>
+            </HBox>
+        </VBox>
     </bottom>
 
 </BorderPane>

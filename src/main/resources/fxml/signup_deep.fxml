@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
@@ -10,140 +9,167 @@
             stylesheets="@../css/styles.css"
             styleClass="main-container">
 
-    <!-- Navigation Bar -->
+    <!-- Top Navigation -->
     <top>
         <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30">
-            <Label text="🤟 SignLearn" styleClass="nav-title"/>
+            <padding>
+                <Insets top="12" right="24" bottom="12" left="24"/>
+            </padding>
+
+            <Button fx:id="backBtn" text="← Back" styleClass="nav-button"
+                    style="-fx-background-color: rgba(99, 102, 241, 0.1); -fx-text-fill: #6366f1; -fx-padding: 8 16; -fx-background-radius: 8;"/>
+
             <Region HBox.hgrow="ALWAYS"/>
-            <HBox spacing="20" alignment="CENTER_RIGHT">
-                <Button text="Home" fx:id="deepHomeBtn" styleClass="nav-button"/>
-                <Button text="About" fx:id="deepAboutBtn" styleClass="nav-button"/>
-                <Button text="Contact" fx:id="deepContactBtn" styleClass="nav-button"/>
-                <Button text="Login" fx:id="deepLoginBtn" styleClass="nav-button"/>
-                <Button text="Sign Up" styleClass="nav-button,active"/>
-            </HBox>
+
+            <Label text="Profile Page" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="logoLabel" text="🤟 SignLearn" styleClass="nav-title"
+                   style="-fx-cursor: hand;"/>
         </HBox>
     </top>
 
     <!-- Main Content -->
     <center>
-        <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
-            <VBox styleClass="content-area,spacing-large" alignment="TOP_CENTER">
+        <VBox alignment="CENTER" spacing="24" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets top="16" right="32" bottom="20" left="32"/>
+            </padding>
 
-                <!-- Header -->
-                <VBox spacing="20" alignment="CENTER">
-                    <Label text="Complete Your Profile" styleClass="page-title"/>
-                    <Label text="Step 2 of 2 - Tell us about yourself to personalize your learning experience"
-                           styleClass="subtitle" textAlignment="CENTER" maxWidth="960"/>
+            <!-- Vertical Spacer -->
+            <Region style="-fx-max-height: 10;"/>
+
+            <!-- Welcome Header -->
+            <VBox spacing="8" alignment="CENTER" maxWidth="600">
+                <Label text="Complete Your Profile"
+                       style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+                <Label text="Step 2 of 2 - Tell us about yourself"
+                       alignment="CENTER"
+                       style="-fx-font-size: 14px; -fx-text-fill: #64748b;"
+                       maxWidth="400"/>
+            </VBox>
+
+            <!-- Progress Indicator -->
+            <HBox spacing="16" alignment="CENTER" maxWidth="320">
+                <VBox spacing="8" alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <Region style="-fx-background-color: #1e40af; -fx-background-radius: 4;" prefHeight="6" maxWidth="140"/>
+                    <Label text="Email Setup"
+                           style="-fx-font-size: 12px; -fx-text-fill: #1e40af; -fx-font-weight: 600;"/>
                 </VBox>
-
-                <!-- Progress Indicator -->
-                <VBox styleClass="stats-section" spacing="16" alignment="CENTER" maxWidth="360">
-                    <HBox spacing="32" alignment="CENTER" prefWidth="360">
-                        <VBox spacing="8" alignment="CENTER" prefWidth="162">
-                            <Region styleClass="progress-indicator" prefWidth="36" prefHeight="8"/>
-                            <Label text="Email Setup" style="-fx-font-size: 14px; -fx-text-fill: #059669; -fx-font-weight: 600;"/>
-                        </VBox>
-                        <Region styleClass="progress-indicator" prefWidth="36" prefHeight="2"/>
-                        <VBox spacing="8" alignment="CENTER" prefWidth="162">
-                            <Region styleClass="progress-indicator" prefWidth="162" prefHeight="8"/>
-                            <Label text="Profile Details" style="-fx-font-size: 14px; -fx-text-fill: #667eea; -fx-font-weight: 600;"/>
-                        </VBox>
-                    </HBox>
+                <Region style="-fx-background-color: #1e40af; -fx-min-width: 24; -fx-pref-height: 2;"/>
+                <VBox spacing="8" alignment="CENTER" HBox.hgrow="ALWAYS">
+                    <Region style="-fx-background-color: #6366f1; -fx-background-radius: 4;" prefHeight="6" maxWidth="140"/>
+                    <Label text="Profile Details"
+                           style="-fx-font-size: 12px; -fx-text-fill: #6366f1; -fx-font-weight: 600;"/>
                 </VBox>
+            </HBox>
 
-                <!-- Form Fields -->
-                <VBox styleClass="feature-card" spacing="40" alignment="CENTER" maxWidth="960" minWidth="700">
-                    <GridPane hgap="32" vgap="32" alignment="CENTER" prefWidth="960">
+            <!-- Signup Form Container -->
+            <VBox alignment="CENTER">
+                <VBox spacing="20" alignment="CENTER" styleClass="feature-card"
+                      style="-fx-padding: 28; -fx-max-width: 500; -fx-min-width: 460;">
 
-                        <!-- Left Column -->
-                        <VBox spacing="12" GridPane.columnIndex="0" GridPane.rowIndex="0" prefWidth="448">
-                            <Label text="Full Name" styleClass="form-label"/>
+                    <!-- Name and Username Row -->
+                    <HBox spacing="16" alignment="CENTER" HBox.hgrow="ALWAYS">
+                        <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                            <Label text="Full Name"
+                                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
                             <TextField fx:id="nameField"
                                        promptText="Enter your full name"
                                        styleClass="form-field"
-                                       prefWidth="448"/>
+                                       style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 10 12;"/>
+                            <!-- Suggestions appear here -->
+                            <VBox fx:id="nameRuleBox" spacing="4" visible="false" managed="false"/>
                         </VBox>
-
-                        <!-- Right Column -->
-                        <VBox spacing="12" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="448">
-                            <Label text="Username" styleClass="form-label"/>
+                        <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                            <Label text="Username"
+                                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
                             <TextField fx:id="usernameField"
-                                       promptText="Choose a display name"
+                                       promptText="Choose a username"
                                        styleClass="form-field"
-                                       prefWidth="448"/>
+                                       style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 10 12;"/>
+                            <!-- Suggestions appear here -->
+                            <VBox fx:id="usernameSuggestionsBox" spacing="4" visible="false" managed="false"/>
                         </VBox>
+                    </HBox>
 
-                        <!-- Date of Birth - Full Width -->
-                        <VBox spacing="12" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
-                            <Label text="Date of Birth" styleClass="form-label"/>
+                    <!-- Date of Birth and Gender Row -->
+                    <HBox spacing="16" alignment="CENTER" HBox.hgrow="ALWAYS">
+                        <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                            <Label text="Date of Birth"
+                                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
                             <DatePicker fx:id="dobPicker"
                                         promptText="Select your date of birth"
                                         styleClass="form-field"
-                                        prefWidth="960"/>
+                                        maxWidth="Infinity"
+                                        style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 10 12;"/>
                         </VBox>
+                        <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                            <Label text="Gender"
+                                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                            <ComboBox fx:id="genderCombo"
+                                      promptText="Select gender"
+                                      styleClass="form-field"
+                                      maxWidth="Infinity"
+                                      style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 10 12;"/>
+                        </VBox>
+                    </HBox>
 
-                        <!-- Password Fields -->
-                        <VBox spacing="12" GridPane.columnIndex="0" GridPane.rowIndex="2" prefWidth="448">
-                            <Label text="Password" styleClass="form-label"/>
+                    <!-- Password Fields Row -->
+                    <HBox spacing="16" alignment="CENTER" HBox.hgrow="ALWAYS">
+                        <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                            <Label text="Password"
+                                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
                             <PasswordField fx:id="passwordField"
-                                           promptText="Create a secure password"
+                                           promptText="Create a password"
                                            styleClass="form-field"
-                                           prefWidth="448"/>
+                                           style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 10 12;"/>
+                            <!-- Password rules appear here -->
+                            <VBox fx:id="passwordRulesBox" spacing="2" visible="false" managed="false"/>
                         </VBox>
 
-                        <VBox spacing="12" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="448">
-                            <Label text="Confirm Password" styleClass="form-label"/>
+                        <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                            <Label text="Confirm Password"
+                                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
                             <PasswordField fx:id="confirmPasswordField"
                                            promptText="Confirm your password"
                                            styleClass="form-field"
-                                           prefWidth="448"/>
+                                           style="-fx-pref-height: 40; -fx-font-size: 14px; -fx-padding: 10 12;"/>
+                            <!-- Confirm password match rule appears here -->
+                            <VBox fx:id="confirmPasswordRuleBox" spacing="2" visible="false" managed="false"/>
                         </VBox>
-
-                    </GridPane>
-
-                    <!-- Message Display -->
-                    <Label fx:id="messageLabel"
-                           wrapText="true"
-                           textAlignment="CENTER"
-                           style="-fx-min-height: 40px;"
-                           maxWidth="864"/>
-
-                    <!-- Action Buttons -->
-                    <HBox spacing="32" alignment="CENTER" prefWidth="576">
-                        <Button fx:id="backBtn"
-                                text="← Previous Step"
-                                styleClass="btn-secondary"
-                                style="-fx-font-size: 16px;"
-                                prefWidth="272"/>
-                        <Button fx:id="finishBtn"
-                                text="Create My Account"
-                                styleClass="btn-primary"
-                                style="-fx-font-weight: 600; -fx-font-size: 16px;"
-                                prefWidth="272"
-                                defaultButton="true"/>
                     </HBox>
 
-                    <!-- Terms Notice -->
-                    <VBox styleClass="info-section" spacing="12" alignment="CENTER" maxWidth="768">
-                        <Label text="Privacy and Terms"
-                               style="-fx-font-size: 16px; -fx-font-weight: 600; -fx-text-fill: #2563eb;"/>
-                        <Label text="By creating an account, you agree to our Terms of Service and Privacy Policy. We're committed to protecting your personal information and providing you with the best learning experience."
-                               style="-fx-font-size: 14px; -fx-text-fill: #2563eb; -fx-text-alignment: center; -fx-font-weight: 500;"
-                               textAlignment="CENTER"
-                               wrapText="true"/>
-                    </VBox>
-                </VBox>
+                    <!-- Error/Message Display -->
+                    <Label fx:id="messageLabel"
+                           style="-fx-text-fill: #ef4444; -fx-font-size: 12px; -fx-font-weight: 500;"
+                           visible="false" managed="false"/>
 
+                    <!-- Vertical Spacer -->
+                    <Region style="-fx-min-height: 8;"/>
+
+                    <!-- Create Account Button -->
+                    <Button fx:id="finishBtn"
+                            text="Create My Account"
+                            styleClass="btn-primary"
+                            defaultButton="true"
+                            style="-fx-pref-height: 44; -fx-font-size: 15px; -fx-font-weight: 600; -fx-background-color: #6366f1; -fx-text-fill: white; -fx-background-radius: 8; -fx-pref-width: 436;"/>
+                </VBox>
             </VBox>
-        </ScrollPane>
+
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
     </center>
 
     <!-- Footer -->
     <bottom>
-        <HBox styleClass="footer" alignment="CENTER">
-            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
-        </HBox>
+        <VBox styleClass="footer" alignment="CENTER" spacing="6"
+              style="-fx-background-color: #f8fafc; -fx-padding: 16 0; -fx-border-color: #e2e8f0; -fx-border-width: 1 0 0 0;">
+            <Label text="Learn Sign Language with Ease"
+                   style="-fx-font-size: 11px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
+            <Label text="© 2025 SignLearn. All rights reserved."
+                   style="-fx-font-size: 9px; -fx-text-fill: #9ca3af;"/>
+        </VBox>
     </bottom>
-
 </BorderPane>

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
@@ -10,100 +9,123 @@
             stylesheets="@../css/styles.css"
             styleClass="main-container">
 
-    <!-- Navigation Bar -->
+    <!-- Top Navigation -->
     <top>
         <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30">
-            <Label text="🤟 SignLearn" styleClass="nav-title"/>
+            <padding>
+                <Insets top="12" right="24" bottom="12" left="24"/>
+            </padding>
+
+            <Button fx:id="backBtn" text="← Home" styleClass="nav-button"
+                    style="-fx-background-color: rgba(99, 102, 241, 0.1); -fx-text-fill: #6366f1; -fx-padding: 8 16; -fx-background-radius: 8;"/>
+
             <Region HBox.hgrow="ALWAYS"/>
-            <HBox spacing="20" alignment="CENTER_RIGHT">
-                <Button text="Home" fx:id="backBtn" styleClass="nav-button"/>
-                <Button text="About" fx:id="loginAboutBtn" styleClass="nav-button"/>
-                <Button text="Contact" fx:id="loginContactBtn" styleClass="nav-button"/>
-                <Button text="Login" styleClass="nav-button,active"/>
-                <Button text="Sign Up" fx:id="loginNavSignupBtn" styleClass="nav-button"/>
-            </HBox>
+
+            <Label text="Login Page" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="logoLabel" text="🤟 SignLearn" styleClass="nav-title"/>
         </HBox>
     </top>
 
     <!-- Main Content -->
     <center>
-        <VBox styleClass="content-area,spacing-large" alignment="CENTER" VBox.vgrow="ALWAYS">
+        <VBox alignment="CENTER" spacing="32" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets top="20" right="32" bottom="20" left="32"/>
+            </padding>
 
-            <!-- Header -->
-            <VBox spacing="20" alignment="CENTER">
-                <Label text="Welcome Back" styleClass="page-title"/>
-                <Label text="Sign in to continue your learning journey and unlock your potential"
-                       styleClass="subtitle" textAlignment="CENTER" maxWidth="640"/>
+            <!-- Vertical Spacer -->
+            <Region style="-fx-max-height: 10;"/>
+
+            <!-- Welcome Header -->
+            <VBox spacing="8" alignment="CENTER" maxWidth="600">
+                <Label text="Welcome Back"
+                       style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+                <Label text="Sign in to continue your learning journey"
+                       alignment="CENTER"
+                       style="-fx-font-size: 15px; -fx-text-fill: #64748b;"
+                       maxWidth="400"/>
             </VBox>
 
-            <!-- Login Form Card -->
-            <VBox styleClass="feature-card" spacing="32" alignment="CENTER" maxWidth="600" minWidth="400">
+            <!-- Login Form Container -->
+            <VBox alignment="CENTER">
+                <VBox spacing="24" alignment="CENTER" styleClass="feature-card"
+                      style="-fx-padding: 32; -fx-max-width: 420; -fx-min-width: 380;">
 
-                <!-- Email Field -->
-                <VBox spacing="12" alignment="CENTER_LEFT" prefWidth="600">
-                    <Label text="Email Address" styleClass="form-label"/>
-                    <TextField fx:id="emailField"
-                               promptText="Enter your email address"
-                               styleClass="form-field"
-                               prefWidth="600"/>
-                </VBox>
+                    <!-- Vertical Spacer -->
+                    <Region style="-fx-min-height: 2;"/>
 
-                <!-- Password Field -->
-                <VBox spacing="12" alignment="CENTER_LEFT" prefWidth="600">
-                    <Label text="Password" styleClass="form-label"/>
-                    <PasswordField fx:id="passwordField"
-                                   promptText="Enter your password"
+                    <!-- Username/Email Field -->
+                    <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                        <Label text="Username or Email"
+                               style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                        <TextField fx:id="emailField"
+                                   promptText="Enter your username or email"
                                    styleClass="form-field"
-                                   prefWidth="600"/>
+                                   style="-fx-pref-height: 44; -fx-font-size: 14px; -fx-padding: 12 16;"/>
+                    </VBox>
+
+                    <!-- Password Field -->
+                    <VBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+                        <HBox alignment="CENTER_LEFT" spacing="0" HBox.hgrow="ALWAYS">
+                            <Label text="Password"
+                                   style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="forgotPasswordBtn" text="Forgot Password?"
+                                    style="-fx-background-color: transparent; -fx-text-fill: #6366f1; -fx-font-size: 11px; -fx-cursor: hand; -fx-underline: true;"/>
+                        </HBox>
+                        <PasswordField fx:id="passwordField"
+                                       promptText="Enter your password"
+                                       styleClass="form-field"
+                                       style="-fx-pref-height: 44; -fx-font-size: 14px; -fx-padding: 12 16;"/>
+                    </VBox>
+
+                    <!-- Error/Message Display -->
+                    <Label fx:id="messageLabel"
+                           style="-fx-text-fill: #ef4444; -fx-font-size: 12px; -fx-font-weight: 500;"
+                           visible="false" managed="false"/>
+
+                    <!-- Vertical Spacer -->
+                    <Region style="-fx-max-height: 1;"/>
+
+                    <!-- Login Button -->
+                    <Button fx:id="loginBtn"
+                            text="Sign In to Dashboard"
+                            styleClass="btn-primary"
+                            defaultButton="true"
+                            style="-fx-pref-height: 44; -fx-font-size: 15px; -fx-font-weight: 600; -fx-background-color: #6366f1; -fx-text-fill: white; -fx-background-radius: 8; -fx-pref-width: 356;"/>
+
+                    <!-- Vertical Spacer -->
+                    <Region style="-fx-max-height: 1;"/>
+
+                    <!-- Divider -->
+                    <Separator style="-fx-background-color: #e2e8f0; -fx-pref-width: 356;"/>
+
+                    <!-- Sign Up Link -->
+                    <HBox spacing="8" alignment="CENTER">
+                        <Label text="Don't have an account?"
+                               style="-fx-font-size: 13px; -fx-text-fill: #64748b;"/>
+                        <Label fx:id="signupLabel" text="Sign up here!"
+                               style="-fx-text-fill: #6366f1; -fx-font-size: 13px; -fx-cursor: hand; -fx-underline: true; -fx-font-weight: 500;"
+                               alignment="CENTER"/>
+                    </HBox>
                 </VBox>
-
-                <!-- Message Display -->
-                <Label fx:id="messageLabel"
-                       wrapText="true"
-                       textAlignment="CENTER"
-                       style="-fx-min-height: 30px;"
-                       prefWidth="540"/>
-
-                <!-- Login Button -->
-                <Button fx:id="loginBtn"
-                        text="Sign In to Dashboard"
-                        styleClass="btn-primary"
-                        prefWidth="600"
-                        style="-fx-font-size: 18px; -fx-padding: 20 36;"
-                        defaultButton="true"/>
-
             </VBox>
 
-            <!-- Divider -->
-            <VBox spacing="20" alignment="CENTER">
-                <Separator maxWidth="600" style="-fx-background-color: rgba(0, 0, 0, 0.1);"/>
-                <Label text="Don't have an account yet?" styleClass="body-text" style="-fx-font-size: 18px;"/>
-            </VBox>
-
-            <!-- Sign Up Section -->
-            <VBox spacing="20" alignment="CENTER">
-                <Button fx:id="signupBtn"
-                        text="Create New Account"
-                        styleClass="btn-secondary"
-                        style="-fx-font-size: 18px; -fx-padding: 18 36;"
-                        prefWidth="360"
-                        minWidth="300"/>
-
-                <Label text="Join thousands of learners mastering sign language worldwide"
-                       style="-fx-font-size: 15px; -fx-text-fill: #64748b; -fx-text-alignment: center; -fx-font-weight: 500;"
-                       textAlignment="CENTER"
-                       wrapText="true"
-                       maxWidth="600"/>
-            </VBox>
-
+            <Region VBox.vgrow="ALWAYS"/>
         </VBox>
     </center>
 
     <!-- Footer -->
     <bottom>
-        <HBox styleClass="footer" alignment="CENTER">
-            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
-        </HBox>
+        <VBox styleClass="footer" alignment="CENTER" spacing="6"
+              style="-fx-background-color: #f8fafc; -fx-padding: 16 0; -fx-border-color: #e2e8f0; -fx-border-width: 1 0 0 0;">
+            <Label text="Learn Sign Language with Ease"
+                   style="-fx-font-size: 11px; -fx-text-fill: #64748b; -fx-font-weight: 500;"/>
+            <Label text="© 2025 SignLearn. All rights reserved."
+                   style="-fx-font-size: 9px; -fx-text-fill: #9ca3af;"/>
+        </VBox>
     </bottom>
-
 </BorderPane>

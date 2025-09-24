@@ -23,9 +23,8 @@ public class LearningController extends BaseController implements DependencyAwar
     private SceneRouter router;
     private LearningService learningService;
 
-    @FXML private ListView<Module> moduleList;
-    @FXML private ListView<Chapter> chapterList;
-    @FXML private ListView<Lesson> lessonList;
+    @FXML private ComboBox<Module> moduleComboBox;
+    @FXML private ComboBox<Chapter> chapterComboBox;
     @FXML private Button openLessonBtn;
     @FXML private Button logoutBtn;
 
@@ -43,25 +42,47 @@ public class LearningController extends BaseController implements DependencyAwar
     public void postInit() {
         // Populate initial data
         List<Module> modules = learningService.listModules();
-        moduleList.getItems().setAll(modules);
+        moduleComboBox.getItems().setAll(modules);
 
-        moduleList.getSelectionModel().selectedItemProperty().addListener((obs, old, m) -> {
-            if (m != null) {
-                chapterList.getItems().setAll(learningService.listChapters(m.getId()));
+        // Set up module selection listener
+        moduleComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldModule, newModule) -> {
+            if (newModule != null) {
+                // Load chapters for the selected module
+                List<Chapter> chapters = learningService.listChapters(newModule.getId());
+                chapterComboBox.getItems().setAll(chapters);
+                chapterComboBox.getSelectionModel().clearSelection(); // Clear previous chapter selection
+                chapterComboBox.setDisable(false); // Enable chapter dropdown
+            } else {
+                // Clear chapters if no module selected
+                chapterComboBox.getItems().clear();
+                chapterComboBox.setDisable(true);
             }
         });
 
-        chapterList.getSelectionModel().selectedItemProperty().addListener((obs, old, c) -> {
-            if (c != null) {
-                lessonList.getItems().setAll(learningService.listLessons(c.getId()));
-            }
+        // Set up chapter selection listener
+        chapterComboBox.getSelectionModel().selectedItemProperty().addListener((obs, oldChapter, newChapter) -> {
+            // Enable the start lesson button when a chapter is selected
+            openLessonBtn.setDisable(newChapter == null);
         });
 
+        // Initially disable chapter selection and start lesson button
+        chapterComboBox.setDisable(true);
+        openLessonBtn.setDisable(true);
+
+        // Set up start lesson button action
         openLessonBtn.setOnAction(e -> {
-            Lesson selected = lessonList.getSelectionModel().getSelectedItem();
-            if (selected != null) {
-                LearningContext.setCurrentLessonId(selected.getId());
-                router.goTo(View.VIDEO);
+            Chapter selectedChapter = chapterComboBox.getSelectionModel().getSelectedItem();
+            if (selectedChapter != null) {
+                // Get the first lesson from the selected chapter
+                List<Lesson> lessons = learningService.listLessons(selectedChapter.getId());
+                if (!lessons.isEmpty()) {
+                    Lesson firstLesson = lessons.get(0); // Start with first lesson
+                    LearningContext.setCurrentLessonId(firstLesson.getId());
+                    router.goTo(View.VIDEO);
+                } else {
+                    // Handle case where chapter has no lessons
+                    showAlert("No Lessons", "This chapter doesn't contain any lessons yet.");
+                }
             }
         });
 

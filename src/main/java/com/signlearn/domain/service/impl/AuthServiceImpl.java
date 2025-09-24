@@ -1,14 +1,15 @@
 package com.signlearn.domain.service.impl;
 
+import com.signlearn.app.context.SessionManager;
 import com.signlearn.domain.model.User;
 import com.signlearn.domain.service.AuthService;
 import com.signlearn.domain.value.Email;
 import com.signlearn.persistence.repo.UserRepository;
 import com.signlearn.security.PasswordHasher;
-import com.signlearn.app.context.SessionManager;
 import com.signlearn.util.Result;
-import com.signlearn.util.SignupStatus;
+import com.signlearn.domain.enums.SignupStatus;
 
+import java.time.Instant;
 import java.util.Optional;
 
 public class AuthServiceImpl implements AuthService {
@@ -28,28 +29,27 @@ public class AuthServiceImpl implements AuthService {
         if (userRepo.findByEmail(emailObj).isPresent()) {
             return Result.success(SignupStatus.DUPLICATE_EMAIL);
         }
-        // store email temporarily for deep signup
         session.setAttribute("pendingEmail", emailObj);
         return Result.success(SignupStatus.SUCCESS);
     }
 
     @Override
-    public Result<User> deepSignUpWithPassword(User user, String rawPassword) {
+    public Result<SignupStatus> deepSignUp(User user) {
+        if (userRepo.findByUsername(user.getUsername()).isPresent()) {
+            return Result.success(SignupStatus.DUPLICATE_USERNAME);
+        }
 
-        String hashed = hasher.hash(rawPassword);
-        user.setPasswordHash(hashed);
-
-        // set createdAt
-        user.setCreatedAt(java.time.Instant.now());
-
-        // persist user
+        user.setCreatedAt(Instant.now());
         long id = userRepo.insert(user);
         user.setId(id);
 
-        // log in
         session.set(user);
-        return Result.success(user);
+        return Result.success(SignupStatus.SUCCESS);
+    }
 
+    @Override
+    public boolean isUsernameAvailable(String username) {
+        return userRepo.findByUsername(username).isEmpty();
     }
 
     @Override
@@ -64,10 +64,5 @@ public class AuthServiceImpl implements AuthService {
             return Result.failure("Invalid credentials");
         }
         return Result.failure("User not found");
-    }
-
-    @Override
-    public void logout() {
-        session.clear();
     }
 }

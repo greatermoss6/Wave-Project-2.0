@@ -1,4 +1,3 @@
-// file: src/main/java/com/signlearn/domain/service/impl/UserServiceImpl.java
 package com.signlearn.domain.service.impl;
 
 import com.signlearn.domain.model.User;
@@ -7,7 +6,6 @@ import com.signlearn.domain.value.Email;
 import com.signlearn.persistence.repo.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepo;
@@ -16,19 +14,38 @@ public class UserServiceImpl implements UserService {
         this.userRepo = userRepo;
     }
 
-    @Override public Optional<User> findById(long id) { return userRepo.findById(id); }
-    @Override public Optional<User> findByEmail(Email email) { return userRepo.findByEmail(email); }
-    @Override public List<User> listAll() { return userRepo.findAll(); }
-    @Override public void update(User user) { userRepo.update(user); }
-    @Override public void delete(long id) { userRepo.delete(id); }
-
     @Override
-    public Optional<User> findByUsername(String username) {
-        return userRepo.findByUsername(username);
+    public User findById(int id) {
+        return userRepo.findById(id).orElse(null);
     }
 
     @Override
-    public boolean isUsernameAvailable(String username) {
-        return username != null && !username.isBlank() && userRepo.findByUsername(username).isEmpty();
+    public User findByUsername(String username) {
+        return userRepo.findByUsername(username).orElse(null);
+    }
+
+    @Override
+    public void save(User user) {
+        userRepo.insert(user);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userRepo.findByEmail(new Email(email)).isPresent();
+    }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepo.findByUsername(username).isPresent();
+    }
+
+    @Override
+    public List<String> suggestUsernames(String baseUsername, int count) {
+        // trivial naive implementation for now
+        return List.of(
+                baseUsername + "1",
+                baseUsername + "2",
+                baseUsername + "3"
+        ).subList(0, Math.min(count, 3));
     }
 }

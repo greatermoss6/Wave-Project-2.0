@@ -2,24 +2,36 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.signlearn.presentation.controller.LandingController"
             stylesheets="@../css/styles.css"
-            styleClass="main-container">
+            styleClass="root">
 
     <!-- Navigation Bar -->
     <top>
-        <HBox styleClass="nav-bar" alignment="CENTER_LEFT" spacing="30" fillHeight="false">
+        <HBox styleClass="nav-bar" alignment="CENTER" spacing="30" fillHeight="false">
+            <!-- Logo on the left -->
             <Label text="🤟 SignLearn" styleClass="nav-title"/>
+
+            <!-- Flexible space to balance the layout -->
             <Region HBox.hgrow="ALWAYS"/>
-            <HBox spacing="20" alignment="CENTER_RIGHT">
+
+            <!-- Main navigation buttons (centered) -->
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="Home" styleClass="nav-button,active"/>
                 <Button text="About" fx:id="aboutBtn" styleClass="nav-button"/>
                 <Button text="Contact" fx:id="contactBtn" styleClass="nav-button"/>
-                <Button text="Login" fx:id="loginBtn" styleClass="nav-button"/>
-                <Button text="Sign Up" fx:id="signupBtn" styleClass="nav-button,active"/>
+            </HBox>
+
+            <!-- Flexible space to push Login/Sign Up to the right -->
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <!-- Login and Sign Up buttons (right-aligned, grouped) -->
+            <HBox styleClass="auth-buttons" spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Login" fx:id="loginBtn" styleClass="auth-button,login-button"/>
+                <Button text="Sign Up" fx:id="signupBtn" styleClass="auth-button,signup-button"/>
             </HBox>
         </HBox>
     </top>
@@ -31,56 +43,79 @@
             <!-- Hero Section -->
             <VBox spacing="32" alignment="CENTER" VBox.vgrow="ALWAYS">
                 <VBox spacing="24" alignment="CENTER">
-                    <Label text="Master Sign Language" styleClass="page-title"/>
-                    <Label text="Learn through engaging video lessons and interactive quizzes designed by certified instructors. Join thousands of learners worldwide and start your journey to meaningful communication."
+                    <Label text="Communication Without Barriers" styleClass="page-title"/>
+                    <Label text="An interactive platform designed to make sign language learning accessible and engaging for everyone. Join thousands of learners worldwide and start your journey to meaningful communication."
                            styleClass="subtitle" wrapText="true" textAlignment="CENTER"/>
                 </VBox>
 
-                <!-- Primary CTA -->
-                <VBox spacing="20" alignment="CENTER">
-                    <Button text="Start Learning Today" fx:id="landingHeroSignupBtn" styleClass="btn-primary"/>
-                    <Button text="Learn More About Us" fx:id="landingHeroAboutBtn" styleClass="btn-secondary"/>
-                </VBox>
+                <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
+
+                    <!-- Define column constraints for equal width -->
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="28" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="28" />
+                    </columnConstraints>
+
+                    <!-- Primary CTA -->
+                    <VBox alignment="CENTER"  GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Button text="Start Learning Today" fx:id="landingHeroSignupBtn" styleClass="btn-primary"/>
+                    </VBox>
+
+                    <VBox alignment="CENTER"   GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Button text="Already have an account?" fx:id="landingHeroLoginBtn" styleClass="btn-secondary"/>
+                    </VBox>
+                </GridPane>
             </VBox>
 
             <!-- Feature Grid -->
-            <GridPane vgap="40" alignment="CENTER" VBox.vgrow="ALWAYS" >
-                <VBox styleClass="feature-card" spacing="20" alignment="CENTER"  GridPane.columnIndex="0" GridPane.rowIndex="0">
-                    <Label text="🎥" style="-fx-font-size: 56px;"/>
-                    <Label text="Video Lessons" styleClass="section-title" style="-fx-font-size: 24px;"/>
-                    <Label text="High-quality lessons from certified sign language instructors with crystal-clear demonstrations and professional production values"
-                           styleClass="body-text" wrapText="true" textAlignment="CENTER"/>
+            <GridPane alignment="CENTER" hgap="20" vgap="20" VBox.vgrow="ALWAYS">
+                <!-- Define column constraints for equal width -->
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="28" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="28" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="28" />
+                </columnConstraints>
+
+                <!-- Feature Card 1 -->
+                <VBox styleClass="feature-card" alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                    <Label text="🎥" style="-fx-font-size: 56px;" />
+                    <Label text="Interactive Learning" styleClass="section-title" style="-fx-font-size: 24px;" />
+                    <Label text="Hands-on practice with real-time feedback to help you master sign language effectively through engaging exercises and demonstrations"
+                           styleClass="body-text" wrapText="true" textAlignment="CENTER" GridPane.hgrow="ALWAYS" />
                 </VBox>
 
-                <VBox styleClass="feature-card" spacing="20" alignment="CENTER"  GridPane.columnIndex="1" GridPane.rowIndex="0">
-                    <Label text="🧠" style="-fx-font-size: 56px;"/>
-                    <Label text="Interactive Quizzes" styleClass="section-title" style="-fx-font-size: 24px;"/>
-                    <Label text="Test your knowledge with engaging multiple-choice questions and immediate feedback to reinforce learning"
-                           styleClass="body-text" wrapText="true" textAlignment="CENTER"/>
+                <!-- Feature Card 2 -->
+                <VBox styleClass="feature-card" alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                    <Label text="🧠" style="-fx-font-size: 56px;" />
+                    <Label text="Video Lessons" styleClass="section-title" style="-fx-font-size: 24px;" />
+                    <Label text="High-quality lessons with crystal-clear demonstrations and professional production values from experienced instructors"
+                           styleClass="body-text" wrapText="true" textAlignment="CENTER" GridPane.hgrow="ALWAYS" />
                 </VBox>
 
-                <VBox styleClass="feature-card" spacing="20" alignment="CENTER"  GridPane.columnIndex="2" GridPane.rowIndex="0">
-                    <Label text="📊" style="-fx-font-size: 56px;"/>
-                    <Label text="Track Progress" styleClass="section-title" style="-fx-font-size: 24px;"/>
-                    <Label text="Monitor your learning journey with detailed analytics, achievements, and personalized recommendations"
-                           styleClass="body-text" wrapText="true" textAlignment="CENTER"/>
+                <!-- Feature Card 3 -->
+                <VBox styleClass="feature-card" alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                    <Label text="📊" style="-fx-font-size: 56px;" />
+                    <Label text="Track Progress" styleClass="section-title" style="-fx-font-size: 24px;" />
+                    <Label text="Monitor your learning journey with detailed analytics and personalized recommendations that adapt to your learning style"
+                           styleClass="body-text" wrapText="true" textAlignment="CENTER" GridPane.hgrow="ALWAYS" />
                 </VBox>
             </GridPane>
-
-            <!-- Bottom CTA -->
-            <VBox spacing="16" alignment="CENTER">
-                <Label text="Already have an account?" styleClass="body-text" style="-fx-font-size: 18px;"/>
-                <Button text="Sign In Here" fx:id="landingFooterLoginBtn" styleClass="btn-secondary"/>
-            </VBox>
 
         </VBox>
     </center>
 
     <!-- Footer -->
     <bottom>
-        <HBox styleClass="footer" alignment="CENTER">
-            <Label text="© 2025 SignLearn - Empowering communication through sign language education" styleClass="footer-text"/>
-        </HBox>
+        <VBox styleClass="footer" alignment="CENTER" spacing="8" maxHeight="50" minHeight="45">
+            <!-- Top level: Tagline and Sign In Link -->
+            <HBox alignment="CENTER">
+                <Label text="Learn Sign Language with Ease" styleClass="footer-text" style="-fx-font-size: 10px;"/>
+            </HBox>
+            <!-- Bottom level: Copyright -->
+            <HBox alignment="CENTER">
+                <Label text="© 2025 SignLearn. All rights reserved." styleClass="footer-text,footer-copyright" style="-fx-font-size: 8px;"/>
+            </HBox>
+        </VBox>
     </bottom>
 
 </BorderPane>
