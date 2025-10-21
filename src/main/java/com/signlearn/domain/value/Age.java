@@ -1,7 +1,7 @@
 package com.signlearn.domain.value;
 
 /**
- * Value object representing a valid age.
+ * Value object representing valid ages.
  */
 public final class Age {
     private final int value;

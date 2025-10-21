@@ -7,8 +7,8 @@ import com.signlearn.app.dependency_injection.DependencyAware;
 import com.signlearn.app.dependency_injection.ServiceRegistry;
 import com.signlearn.domain.model.Module;
 import com.signlearn.domain.model.Chapter;
-import com.signlearn.domain.model.Lesson;
 import com.signlearn.domain.service.LearningService;
+import com.signlearn.domain.model.Lesson;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

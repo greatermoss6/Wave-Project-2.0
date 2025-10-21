@@ -1,10 +1,10 @@
 package com.signlearn.persistence.sqlite;
 
-import com.signlearn.domain.model.Video;
 import com.signlearn.persistence.Database;
 import com.signlearn.persistence.repo.VideoRepository;
 import com.signlearn.mapping.VideoMapper;
 import com.signlearn.exceptions.PersistenceException;
+import com.signlearn.domain.model.Video;
 
 import java.sql.*;
 import java.util.Optional;

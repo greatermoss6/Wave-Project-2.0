@@ -1,6 +1,5 @@
 package com.signlearn.persistence.sqlite;
 
-import com.signlearn.domain.model.Lesson;
 import com.signlearn.persistence.Database;
 import com.signlearn.persistence.repo.LessonRepository;
 import com.signlearn.mapping.LessonMapper;
@@ -10,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import com.signlearn.domain.model.Lesson;
 
 public class SqliteLessonRepository implements LessonRepository {
 

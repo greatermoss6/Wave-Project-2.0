@@ -1,8 +1,8 @@
 package com.signlearn.persistence.repo;
 
-import com.signlearn.domain.model.Lesson;
 import java.util.List;
 import java.util.Optional;
+import com.signlearn.domain.model.Lesson;
 
 public interface LessonRepository {
     Optional<Lesson> findById(long id);

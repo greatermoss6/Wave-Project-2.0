@@ -1,8 +1,8 @@
 package com.signlearn.domain.service.impl;
 
-import com.signlearn.domain.model.Video;
 import com.signlearn.domain.service.VideoService;
 import com.signlearn.persistence.repo.VideoRepository;
+import com.signlearn.domain.model.Video;
 
 import java.util.Optional;
 

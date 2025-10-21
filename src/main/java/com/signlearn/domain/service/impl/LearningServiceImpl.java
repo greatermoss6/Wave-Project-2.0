@@ -2,11 +2,11 @@ package com.signlearn.domain.service.impl;
 
 import com.signlearn.domain.model.Module;
 import com.signlearn.domain.model.Chapter;
-import com.signlearn.domain.model.Lesson;
 import com.signlearn.persistence.repo.ModuleRepository;
 import com.signlearn.persistence.repo.ChapterRepository;
 import com.signlearn.persistence.repo.LessonRepository;
 import com.signlearn.domain.service.LearningService;
+import com.signlearn.domain.model.Lesson;
 
 import java.util.List;
 

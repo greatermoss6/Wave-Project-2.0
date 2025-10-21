@@ -1,9 +1,8 @@
 package com.signlearn.mapping;
 
-import com.signlearn.domain.model.Video;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.signlearn.domain.model.Video;
 
 public class VideoMapper {
     public static Video map(ResultSet rs) throws SQLException {

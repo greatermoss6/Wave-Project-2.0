@@ -1,11 +1,11 @@
 package com.signlearn.domain.service.impl;
 
 import com.signlearn.domain.model.Progress;
-import com.signlearn.domain.model.Lesson;
 import com.signlearn.domain.model.Chapter;
 import com.signlearn.domain.model.Module;
 import com.signlearn.domain.service.ProgressService;
 import com.signlearn.persistence.repo.*;
+import com.signlearn.domain.model.Lesson;
 
 import java.util.*;
 import java.util.stream.Collectors;
