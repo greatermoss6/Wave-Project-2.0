@@ -2,7 +2,7 @@ package com.signlearn.domain.model;
 
 import com.signlearn.domain.value.Email;
 import com.signlearn.domain.value.Password;
-
+import com.signlearn.domain.value.Credentials;
 import java.time.Instant;
 import java.time.LocalDate;
 

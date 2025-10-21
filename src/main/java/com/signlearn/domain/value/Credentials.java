@@ -1,4 +1,4 @@
-package com.signlearn.domain.model;
+package com.signlearn.domain.value;
 
 import com.signlearn.domain.value.Email;
 import com.signlearn.domain.value.Password;

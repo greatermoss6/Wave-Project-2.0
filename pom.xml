@@ -50,6 +50,21 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Mockito (unit tests that isolate services from repos/IO) -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.12.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>5.12.0</version>
+            <scope>test</scope>
+        </dependency>
+
         <!-- JUnit Platform Suite (for @Suite support) -->
         <dependency>
             <groupId>org.junit.platform</groupId>
