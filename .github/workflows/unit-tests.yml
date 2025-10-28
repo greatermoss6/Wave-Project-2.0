@@ -2,9 +2,9 @@ name: Automatic Unit Testing
 
 on:
   push:
-    branches: [ Testing_Branch ]
+    branches: ['**']
   pull_request:
-    branches: [ Testing_Branch ]
+    branches: ['**']
 
 jobs: 
   test: 
