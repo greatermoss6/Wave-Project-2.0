@@ -12,7 +12,7 @@ public final class Age {
 
     public static Age of(int value) {
         if (value < 0 || value > 120) {
-            throw new IllegalArgumentException("Invalid age: " + value);
+            throw new IllegalArgumentException("Invalid age: " + value + " (age between 0 and 120 are allowed, inclusive)");
         }
         return new Age(value);
     }
