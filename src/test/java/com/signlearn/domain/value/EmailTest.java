@@ -13,8 +13,12 @@ public class EmailTest {
     }
 
     @Test
-    void nullEmailTest()
-    {
+    void nullEmailTest() {
         assertThrows(IllegalArgumentException.class, () -> new Email(null));
+    }
+
+    @Test
+    void domainEmailTest() {
+        assertThrows(IllegalArgumentException.class, () -> new Email("myemail@gmailcom"));
     }
 }
