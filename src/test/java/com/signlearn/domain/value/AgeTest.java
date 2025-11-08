@@ -18,8 +18,8 @@ class AgeTest {
 
         String msgBelowBound = low.getMessage();
         String msgAboveBound = high.getMessage();
-        assertTrue(msgBelowBound.contains("age between 0 and 120 are allowed, inclusive"));
-        assertTrue(msgAboveBound.contains("age between 0 and 120 are allowed, inclusive"));
+        assertTrue(msgBelowBound.contains("valid age inputs are from 0 - 120 (inclusive)"));
+        assertTrue(msgAboveBound.contains("valid age inputs are from 0 - 120 (inclusive)"));
 
     }
 }
